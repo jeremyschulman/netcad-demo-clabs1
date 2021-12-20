@@ -1,0 +1,25 @@
+# -----------------------------------------------------------------------------
+#
+#                             User Design
+#
+# -----------------------------------------------------------------------------
+
+[design.clab1]
+    description = "ContainerLabs basic switching demo"
+
+# -----------------------------------------------------------------------------
+#
+#                       NETCAM plugins
+#
+# -----------------------------------------------------------------------------
+
+[[netcam.plugins]]
+
+    name = "Arista EOS"
+    supports = ["eos"]
+    package = "netcam_aioeos"
+
+    [[netcam.plugins.config]]
+        env.username = "NETWORK_USERNAME"
+        env.password = "NETWORK_PASSWORD"
+

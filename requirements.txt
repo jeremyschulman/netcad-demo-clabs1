@@ -1,0 +1,6 @@
+The lock file does not exist. Locking.
+Updating dependencies
+Resolving dependencies...
+
+Writing lock file
+
