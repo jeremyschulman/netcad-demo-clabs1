@@ -1,0 +1,6 @@
+{
+   "service": "transceivers",
+   "device": "acc02",
+   "exclusive": true,
+   "tests": []
+}

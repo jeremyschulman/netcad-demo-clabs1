@@ -1,0 +1,27 @@
+{
+   "service": "cabling",
+   "device": "acc02",
+   "exclusive": false,
+   "tests": [
+      {
+         "test_case": null,
+         "test_params": {
+            "interface": "Ethernet7"
+         },
+         "expected_results": {
+            "device": "core01",
+            "port_id": "Ethernet7"
+         }
+      },
+      {
+         "test_case": null,
+         "test_params": {
+            "interface": "Ethernet8"
+         },
+         "expected_results": {
+            "device": "core01",
+            "port_id": "Ethernet8"
+         }
+      }
+   ]
+}

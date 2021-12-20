@@ -1,0 +1,6 @@
+{
+   "service": "ipaddrs",
+   "device": "core01",
+   "exclusive": true,
+   "tests": []
+}

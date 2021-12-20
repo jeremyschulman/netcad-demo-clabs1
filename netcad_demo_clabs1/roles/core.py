@@ -5,6 +5,7 @@ from netcad_demo_clabs1.cabling import DemoCabling
 
 
 class CoreSwitch(Device):
+    os_name = "eos"
     product_model = "cEOS-8"
 
 

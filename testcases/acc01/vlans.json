@@ -1,0 +1,58 @@
+{
+   "service": "vlans",
+   "device": "acc01",
+   "exclusive": true,
+   "tests": [
+      {
+         "test_case": "interfaces",
+         "test_params": {
+            "vlan_id": 10
+         },
+         "expected_results": {
+            "vlan": {
+               "name": "PHONE",
+               "vlan_id": 10,
+               "description": "Voip Phone ports"
+            },
+            "interfaces": [
+               "Ethernet2",
+               "Ethernet3",
+               "Ethernet7",
+               "Ethernet8"
+            ]
+         }
+      },
+      {
+         "test_case": "interfaces",
+         "test_params": {
+            "vlan_id": 20
+         },
+         "expected_results": {
+            "vlan": {
+               "name": "PRINTERS",
+               "vlan_id": 20,
+               "description": "Printer ports"
+            },
+            "interfaces": [
+               "Ethernet1",
+               "Ethernet7",
+               "Ethernet8"
+            ]
+         }
+      },
+      {
+         "test_case": "interfaces",
+         "test_params": {
+            "vlan_id": 411
+         },
+         "expected_results": {
+            "vlan": {
+               "name": "not_vlan_1",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            },
+            "interfaces": []
+         }
+      }
+   ]
+}

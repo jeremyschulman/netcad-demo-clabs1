@@ -1,0 +1,47 @@
+{
+   "service": "cabling",
+   "device": "core01",
+   "exclusive": false,
+   "tests": [
+      {
+         "test_case": null,
+         "test_params": {
+            "interface": "Ethernet5"
+         },
+         "expected_results": {
+            "device": "acc01",
+            "port_id": "Ethernet7"
+         }
+      },
+      {
+         "test_case": null,
+         "test_params": {
+            "interface": "Ethernet6"
+         },
+         "expected_results": {
+            "device": "acc01",
+            "port_id": "Ethernet8"
+         }
+      },
+      {
+         "test_case": null,
+         "test_params": {
+            "interface": "Ethernet7"
+         },
+         "expected_results": {
+            "device": "acc02",
+            "port_id": "Ethernet7"
+         }
+      },
+      {
+         "test_case": null,
+         "test_params": {
+            "interface": "Ethernet8"
+         },
+         "expected_results": {
+            "device": "acc02",
+            "port_id": "Ethernet8"
+         }
+      }
+   ]
+}
