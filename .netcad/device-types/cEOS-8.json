@@ -1,0 +1,121 @@
+{
+   "device_type": {
+      "id": 31,
+      "url": "http://localhost:8000/api/dcim/device-types/31/",
+      "display": "cEOS-8",
+      "manufacturer": {
+         "id": 1,
+         "url": "http://localhost:8000/api/dcim/manufacturers/1/",
+         "display": "Arista",
+         "name": "Arista",
+         "slug": "arista"
+      },
+      "model": "cEOS-8",
+      "slug": "ceos-8",
+      "part_number": "CEOS-8",
+      "u_height": 1,
+      "is_full_depth": false,
+      "subdevice_role": null,
+      "front_image": null,
+      "rear_image": null,
+      "comments": "",
+      "tags": [],
+      "custom_fields": {},
+      "created": "2021-12-20",
+      "last_updated": "2021-12-20T19:29:44.820512Z",
+      "device_count": 0
+   },
+   "interfaces": [
+      {
+         "name": "Ethernet1",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": false,
+         "description": ""
+      },
+      {
+         "name": "Ethernet2",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": false,
+         "description": ""
+      },
+      {
+         "name": "Ethernet3",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": false,
+         "description": ""
+      },
+      {
+         "name": "Ethernet4",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": false,
+         "description": ""
+      },
+      {
+         "name": "Ethernet5",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": false,
+         "description": ""
+      },
+      {
+         "name": "Ethernet6",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": false,
+         "description": ""
+      },
+      {
+         "name": "Ethernet7",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": false,
+         "description": ""
+      },
+      {
+         "name": "Ethernet8",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": false,
+         "description": ""
+      },
+      {
+         "name": "Management0",
+         "label": "",
+         "type": {
+            "value": "other",
+            "label": "Other"
+         },
+         "mgmt_only": true,
+         "description": ""
+      }
+   ],
+   "netcad.origin": "netbox"
+}

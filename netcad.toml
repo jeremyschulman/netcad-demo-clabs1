@@ -6,10 +6,11 @@
 
 [design.clab1]
     description = "ContainerLabs basic switching demo"
+    package = "netcad_demo_clabs1"
 
 # -----------------------------------------------------------------------------
 #
-#                       NETCAM plugins
+#                                netcam plugins
 #
 # -----------------------------------------------------------------------------
 
@@ -22,4 +23,19 @@
     [[netcam.plugins.config]]
         env.username = "NETWORK_USERNAME"
         env.password = "NETWORK_PASSWORD"
+
+# -----------------------------------------------------------------------------
+#
+#                                origin plugins
+#
+# -----------------------------------------------------------------------------
+
+[origin.netbox]
+    url = "http://localhost:8000"
+    token = "$NETBOX_TOKEN"
+    package = "netcad.netbox:netbox"
+
+
+[get]
+    device-types = "netbox"
 
