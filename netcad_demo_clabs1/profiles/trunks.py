@@ -2,23 +2,9 @@ from netcad.device.l2_interfaces import InterfaceL2Trunk
 from netcad.device import PeerInterfaceId
 from netcad.vlan import VlansFromPeer, VlansAll
 
-from netcad.phy_port import (
-    PhyPortProfile,
-    PortCable,
-    CableMediaType,
-    CableTerminationType,
-)
 
 from netcad_demo_clabs1.vlans import vlan_native
-
-
-port_ebra = PhyPortProfile(
-    name="EbraTestPhyPort",
-    cabling=PortCable(
-        media=CableMediaType.virtual, termination=CableTerminationType.virtual
-    ),
-    transceiver=None,
-)
+from netcad_demo_clabs1.profiles.phy_port import port_ebra
 
 
 class CorePeeringTrunk(InterfaceL2Trunk):
