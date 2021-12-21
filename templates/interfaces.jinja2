@@ -1,0 +1,3 @@
+{% for iface_obj in device.interfaces.used().values() | sort %}
+{{ iface_obj.render() }}
+{% endfor %}

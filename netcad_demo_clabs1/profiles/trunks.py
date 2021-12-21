@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from netcad.device.l2_interfaces import InterfaceL2Trunk
 from netcad.device import PeerInterfaceId
 from netcad.vlan import VlansFromPeer, VlansAll
@@ -17,6 +19,7 @@ class CorePeeringTrunk(InterfaceL2Trunk):
     desc = PeerInterfaceId()
     native_vlan = VlansFromPeer()
     vlans = VlansFromPeer()
+    template = Path("interface_trunk.jinja2")
 
 
 class AccToCoreUplink(InterfaceL2Trunk):
@@ -29,3 +32,4 @@ class AccToCoreUplink(InterfaceL2Trunk):
     desc = PeerInterfaceId()
     native_vlan = vlan_native
     vlans = VlansAll()
+    template = Path("interface_trunk.jinja2")

@@ -1,0 +1,9 @@
+{% set if_prof = interface.profile %}
+interface {{ interface.name }}
+   description {{ interface.desc }}
+{% if if_prof.native_vlan is defined %}
+   switchport trunk native vlan {{ if_prof.native_vlan.vlan_id }}
+{% endif %}
+   switchport trunk allowed vlan {{ interface | vlan_ranges }}
+   switchport mode trunk
+!
