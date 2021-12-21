@@ -4,7 +4,8 @@
 #
 # -----------------------------------------------------------------------------
 
-[design.clab1]
+[[design]]
+    name = "clab1"
     description = "ContainerLabs basic switching demo"
     package = "netcad_demo_clabs1"
 

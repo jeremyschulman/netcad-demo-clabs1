@@ -10,13 +10,13 @@
          },
          "expected_results": {
             "vlan": {
-               "name": "PHONE",
+               "name": "Phones",
                "vlan_id": 10,
                "description": "Voip Phone ports"
             },
             "interfaces": [
-               "Ethernet5",
-               "Ethernet6"
+               "Ethernet1",
+               "Ethernet2"
             ]
          }
       },
@@ -27,13 +27,13 @@
          },
          "expected_results": {
             "vlan": {
-               "name": "PRINTERS",
+               "name": "Printers",
                "vlan_id": 20,
                "description": "Printer ports"
             },
             "interfaces": [
-               "Ethernet5",
-               "Ethernet6"
+               "Ethernet1",
+               "Ethernet2"
             ]
          }
       },

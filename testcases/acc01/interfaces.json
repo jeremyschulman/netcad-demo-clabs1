@@ -81,7 +81,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "core01-et5",
+            "desc": "core01-et1",
             "speed": null
          }
       },
@@ -94,7 +94,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "core01-et6",
+            "desc": "core01-et2",
             "speed": null
          }
       },

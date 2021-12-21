@@ -6,7 +6,7 @@
       {
          "test_case": "switchport",
          "test_params": {
-            "if_name": "Ethernet5"
+            "if_name": "Ethernet1"
          },
          "expected_results": {
             "switchport_mode": "trunk",
@@ -17,12 +17,12 @@
             },
             "trunk_allowed_vlans": [
                {
-                  "name": "PHONE",
+                  "name": "Phones",
                   "vlan_id": 10,
                   "description": "Voip Phone ports"
                },
                {
-                  "name": "PRINTERS",
+                  "name": "Printers",
                   "vlan_id": 20,
                   "description": "Printer ports"
                }
@@ -32,7 +32,7 @@
       {
          "test_case": "switchport",
          "test_params": {
-            "if_name": "Ethernet6"
+            "if_name": "Ethernet2"
          },
          "expected_results": {
             "switchport_mode": "trunk",
@@ -43,12 +43,12 @@
             },
             "trunk_allowed_vlans": [
                {
-                  "name": "PHONE",
+                  "name": "Phones",
                   "vlan_id": 10,
                   "description": "Voip Phone ports"
                },
                {
-                  "name": "PRINTERS",
+                  "name": "Printers",
                   "vlan_id": 20,
                   "description": "Printer ports"
                }
@@ -58,7 +58,7 @@
       {
          "test_case": "switchport",
          "test_params": {
-            "if_name": "Ethernet7"
+            "if_name": "Ethernet3"
          },
          "expected_results": {
             "switchport_mode": "trunk",
@@ -73,7 +73,7 @@
       {
          "test_case": "switchport",
          "test_params": {
-            "if_name": "Ethernet8"
+            "if_name": "Ethernet4"
          },
          "expected_results": {
             "switchport_mode": "trunk",

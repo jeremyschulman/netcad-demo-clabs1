@@ -68,7 +68,7 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "core01-et7",
+         "desc": "core01-et3",
          "profile_flags": {}
       },
       "Ethernet8": {
@@ -76,7 +76,7 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "core01-et8",
+         "desc": "core01-et4",
          "profile_flags": {}
       },
       "Management0": {

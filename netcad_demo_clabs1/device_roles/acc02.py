@@ -4,7 +4,7 @@ from .access import AccessSwitch
 
 
 class Acc02Switch(AccessSwitch):
-    pass
+    sort_key = (1, 2)
 
 
 if_defs = Acc02Switch.interfaces

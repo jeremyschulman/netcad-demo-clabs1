@@ -10,7 +10,7 @@
          },
          "expected_results": {
             "vlan": {
-               "name": "PHONE",
+               "name": "Phones",
                "vlan_id": 10,
                "description": "Voip Phone ports"
             },
@@ -29,7 +29,7 @@
          },
          "expected_results": {
             "vlan": {
-               "name": "PRINTERS",
+               "name": "Printers",
                "vlan_id": 20,
                "description": "Printer ports"
             },

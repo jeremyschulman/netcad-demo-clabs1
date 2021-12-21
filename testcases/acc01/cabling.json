@@ -10,7 +10,7 @@
          },
          "expected_results": {
             "device": "core01",
-            "port_id": "Ethernet5"
+            "port_id": "Ethernet1"
          }
       },
       {
@@ -20,7 +20,7 @@
          },
          "expected_results": {
             "device": "core01",
-            "port_id": "Ethernet6"
+            "port_id": "Ethernet2"
          }
       }
    ]
