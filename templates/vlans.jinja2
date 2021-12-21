@@ -1,0 +1,6 @@
+{% for vlan in device.services['vlans'].all_vlans() %}
+vlan {{ vlan.vlan_id }}
+{% if not loop.last %}
+!
+{% endif %}
+{% endfor %}
