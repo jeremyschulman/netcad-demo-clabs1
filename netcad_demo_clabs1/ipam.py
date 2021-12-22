@@ -8,6 +8,8 @@ def create_site_ipam(design: Design) -> IPAM:
 
     ipam = IPAM(name=design.name)
 
+    ipam.network("OOB", prefix="172.20.20.0/24")
+
     ipam.network(name=vlans.vlan_phones, prefix="10.10.1.0/24")
     ipam.network(name=vlans.vlan_printers, prefix="10.10.2.0/24")
     ipam.network(name=vlans.vlan_media_iptvs, prefix="10.10.3.0/24")

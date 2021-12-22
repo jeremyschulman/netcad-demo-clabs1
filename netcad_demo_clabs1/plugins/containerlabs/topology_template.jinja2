@@ -9,12 +9,12 @@ topology:
     br-dummy:
       kind: bridge
 
-{% for device_name in design.devices %}
+    {% for device_name in design.devices %}
     {{ device_name}}:
       kind: ceos
       image: ceos:latest
-
-{% endfor %}
+      startup-config: {{ device_name }}.cfg
+    {% endfor %}
 
   links:
 

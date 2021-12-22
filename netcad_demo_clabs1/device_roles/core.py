@@ -9,7 +9,6 @@ from pathlib import Path
 # -----------------------------------------------------------------------------
 
 from ..profiles.trunks import CorePeeringTrunk
-from ..profiles.clab_ma0 import ClabAutoManagement
 from ..cabling import DemoCabling
 from .any_device import AnyDevice
 
@@ -42,8 +41,6 @@ class CoreSwitch(AnyDevice):
 # -----------------------------------------------------------------------------
 
 if_defs = CoreSwitch.interfaces
-
-if_defs["Management0"].profile = ClabAutoManagement()
 
 
 with if_defs["Ethernet1"] as eth:

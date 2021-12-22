@@ -1,0 +1,15 @@
+service routing protocols model multi-agent
+!
+spanning-tree mode mstp
+!
+management api http-commands
+   no shutdown
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+no ip routing
+!
