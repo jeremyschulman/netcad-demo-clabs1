@@ -17,9 +17,9 @@ def create_design(design: Design) -> Design:
 
     ipam = create_site_ipam(design)
 
-    core = CoreSwitch(name="core01")
-    sw1 = Acc01Switch(name="acc01")
-    sw2 = Acc02Switch(name="acc02")
+    core = CoreSwitch(name="core01.d")
+    sw1 = Acc01Switch(name="acc01.d")
+    sw2 = Acc02Switch(name="acc02.d")
 
     all_devs = [core, sw1, sw2]
 

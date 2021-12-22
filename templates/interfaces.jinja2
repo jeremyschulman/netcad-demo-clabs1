@@ -1,3 +1,8 @@
-{% for iface_obj in device.interfaces.used().values() | sort %}
-{{ iface_obj.render() }}
+{% for interface in device.interfaces.values() | sort %}
+    {% if interface.used %}
+{{ interface.render() }}
+    {% elif interface.name.startswith("Management") %}
+    {% else %}
+{% include "interface_unused.jinja2" %}
+    {% endif %}
 {% endfor %}

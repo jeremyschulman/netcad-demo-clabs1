@@ -1,6 +1,8 @@
 {% import "macros/macro_stp.jinja2" as stp %}
+{% import "macros/macro_intfadmin.jinja2" as intf %}
 interface {{ interface.name }}
    description {{ interface.desc }}
    switchport access vlan {{ interface.profile.vlan.vlan_id }}
    {{ stp.stp_access() | indent(3) }}
+   {{ intf.intf_admin(interface.enabled) | indent(3) }}
 !
