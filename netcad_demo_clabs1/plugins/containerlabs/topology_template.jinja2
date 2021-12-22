@@ -18,21 +18,17 @@ topology:
 
   links:
 
-    # used data ports
-
-{% for endpoints in design.services.topology.cabling.cables.values() %}
-{% set endp_a, endp_b = endpoints | sort(attribute="device,port_numbers") %}
-{% set side_a = endp_a.device.name + ":" + endp_a.short_name.lower() %}
-{% set side_b = endp_b.device.name + ":" + endp_b.short_name.lower() %}
+    # used cabled data ports
+    {% for side_a, side_b in cabled_ports %}
     - endpoints: ["{{ side_a }}", "{{ side_b }}"]
-{% endfor %}
+    {% endfor %}
+
+    # used uncabled data ports
+    {% for side_a, dummy_id in uncabled_ports %}
+    - endpoints: ["{{ side_a }}", "br-dummy:{{ dummy_id }}"]
+    {% endfor %}
 
     # unused data ports
-
-{% for device_name, dev_obj in design.devices.items() %}
-{% set oloop = loop.index %}
-{% for intf_obj in dev_obj.interfaces.values() | rejectattr('used', 'true') | select("is_clab_dataport") %}
-{% set intf_name = intf_obj.short_name.lower() %}
-    - endpoints: ["{{ device_name }}:{{ intf_name }}", "br-dummy:{{ oloop }}-{{ loop.index }}"]
-{% endfor %}
-{% endfor %}
+    {% for side_a, dummy_id in unused_ports %}
+    - endpoints: ["{{ side_a }}", "br-dummy:{{ dummy_id }}"]
+    {% endfor %}
