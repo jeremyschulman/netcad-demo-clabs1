@@ -108,3 +108,54 @@ def clig_clabs_etchosts(designs: Tuple[str], clab_prefix):
             std_etc_hosts.append(f"{ipaddr}\t{simple_host}")
 
     print("\n".join(std_etc_hosts))
+
+
+# -----------------------------------------------------------------------------
+#
+# netcad clabs copy-configs
+#
+# -----------------------------------------------------------------------------
+
+
+@clig_clabs.command("cp-configs")
+@opt_designs()
+@click.option(
+    "--path",
+    "clab_dirpath",
+    required=True,
+    help="path to clab directory",
+    type=click.Path(
+        dir_okay=True, file_okay=False, exists=True, resolve_path=True, path_type=Path
+    ),
+)
+def clig_clabs_copyconfigs(designs: Tuple[str], clab_dirpath: Path):
+    """
+    Generate the shell copy commands to copy the netcad generated config files
+    into container flash area.  The default destination file name will be
+    "netcad.cfg".  For now, this command is supports cEOS exclusively.
+
+    The User is required to perform the copy command since sudo/root is
+    required, for example:
+
+        netcad clab cp-configs --path demo-clab1 | sudo bash -
+
+    \f
+    Parameters
+    ----------
+    designs:
+        List of designs to process
+
+    clab_dirpath: Path
+        The root directory where the containerlab topology file is located.
+    """
+    device_objs = get_devices_from_designs(designs=designs)
+    configs_dir = Path("configs")
+
+    for dev_obj in device_objs:
+        cfg_file = dev_obj.name + ".cfg"
+        src_file = configs_dir / cfg_file
+        dst_dir = (
+            clab_dirpath / ("clab-" + dev_obj.design.name) / dev_obj.name / "flash"
+        )
+        dst_file = dst_dir / "netcad.cfg"
+        print(f"cp {src_file.absolute()} {dst_file.absolute()}")

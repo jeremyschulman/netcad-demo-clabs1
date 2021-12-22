@@ -1,6 +1,6 @@
 {
    "service": "interfaces",
-   "device": "core01",
+   "device": "acc01.d",
    "exclusive": true,
    "tests": [
       {
@@ -12,7 +12,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "acc01-et7",
+            "desc": "HR-printer",
             "speed": null
          }
       },
@@ -25,7 +25,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "acc01-et8",
+            "desc": "Bob H. phone",
             "speed": null
          }
       },
@@ -38,7 +38,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "acc02-et7",
+            "desc": "Alice C. phone",
             "speed": null
          }
       },
@@ -46,13 +46,10 @@
          "test_case": null,
          "test_params": {
             "interface": "Ethernet4",
-            "interface_flags": {}
+            "interface_flags": null
          },
          "expected_results": {
-            "used": true,
-            "oper_up": true,
-            "desc": "acc02-et8",
-            "speed": null
+            "used": false
          }
       },
       {
@@ -79,20 +76,26 @@
          "test_case": null,
          "test_params": {
             "interface": "Ethernet7",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "core01.d-et1",
+            "speed": null
          }
       },
       {
          "test_case": null,
          "test_params": {
             "interface": "Ethernet8",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "core01.d-et2",
+            "speed": null
          }
       },
       {

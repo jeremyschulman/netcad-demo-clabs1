@@ -1,6 +1,17 @@
-from netcad_demo_clabs1.cabling import DemoCabling
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
+
+from ..cabling import DemoCabling
 from ..profiles.trunks import AccToCoreUplink
+from ..profiles.clab_ma0 import ClabAutoManagement
 from .access import AccessSwitch
+
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["Acc02Switch"]
 
 
 class Acc02Switch(AccessSwitch):
@@ -8,6 +19,8 @@ class Acc02Switch(AccessSwitch):
 
 
 if_defs = Acc02Switch.interfaces
+
+if_defs["Management0"].profile = ClabAutoManagement()
 
 # -----------------------------------------------------------------------------
 #                        Uplink ports to core switch

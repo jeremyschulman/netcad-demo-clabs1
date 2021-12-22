@@ -1,6 +1,6 @@
 {
    "service": "switchports",
-   "device": "core01",
+   "device": "core01.d",
    "exclusive": true,
    "tests": [
       {

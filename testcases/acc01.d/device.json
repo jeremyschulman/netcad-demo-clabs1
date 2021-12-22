@@ -1,42 +1,42 @@
 {
    "service": "device",
-   "device": "acc02",
+   "device": "acc01.d",
    "exclusive": true,
    "tests": [
       {
          "test_case": null,
          "test_params": {
-            "device": "acc02",
+            "device": "acc01.d",
             "os_name": "eos"
          },
          "expected_results": {
-            "product_model": "cEOS-8"
+            "product_model": "cEOSLab"
          }
       }
    ],
    "interfaces": {
       "Ethernet1": {
          "name": "Ethernet1",
-         "enabled": false,
-         "used": false,
-         "port_type": null,
-         "desc": null,
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "HR-printer",
          "profile_flags": {}
       },
       "Ethernet2": {
          "name": "Ethernet2",
-         "enabled": false,
-         "used": false,
-         "port_type": null,
-         "desc": null,
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "Bob H. phone",
          "profile_flags": {}
       },
       "Ethernet3": {
          "name": "Ethernet3",
-         "enabled": false,
-         "used": false,
-         "port_type": null,
-         "desc": null,
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "Alice C. phone",
          "profile_flags": {}
       },
       "Ethernet4": {
@@ -68,7 +68,7 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "core01-et3",
+         "desc": "core01.d-et1",
          "profile_flags": {}
       },
       "Ethernet8": {
@@ -76,7 +76,7 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "core01-et4",
+         "desc": "core01.d-et2",
          "profile_flags": {}
       },
       "Management0": {

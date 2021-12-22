@@ -1,6 +1,6 @@
 {
    "service": "vlans",
-   "device": "acc02",
+   "device": "acc02.d",
    "exclusive": true,
    "tests": [
       {

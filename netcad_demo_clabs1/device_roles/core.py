@@ -5,20 +5,34 @@
 from pathlib import Path
 
 # -----------------------------------------------------------------------------
-# Public Imports
-# -----------------------------------------------------------------------------
-
-from netcad_demo_clabs1.profiles.trunks import CorePeeringTrunk
-from netcad_demo_clabs1.cabling import DemoCabling
-
-# -----------------------------------------------------------------------------
 # Private Imports
 # -----------------------------------------------------------------------------
 
+from ..profiles.trunks import CorePeeringTrunk
+from ..profiles.clab_ma0 import ClabAutoManagement
+from ..cabling import DemoCabling
 from .any_device import AnyDevice
 
 
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["CoreSwitch"]
+
+# -----------------------------------------------------------------------------
+#
+#                               CODE BEGINS
+#
+# -----------------------------------------------------------------------------
+
+
 class CoreSwitch(AnyDevice):
+    """
+    Define the device profile for a "core" device.  These devices represent the
+    aggreation of "access" devices.
+    """
+
     sort_key = (0, 0)
     template = Path("core_switch.jinja2")
 
@@ -28,6 +42,8 @@ class CoreSwitch(AnyDevice):
 # -----------------------------------------------------------------------------
 
 if_defs = CoreSwitch.interfaces
+
+if_defs["Management0"].profile = ClabAutoManagement()
 
 
 with if_defs["Ethernet1"] as eth:

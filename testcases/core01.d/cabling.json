@@ -1,6 +1,6 @@
 {
    "service": "cabling",
-   "device": "core01",
+   "device": "core01.d",
    "exclusive": false,
    "tests": [
       {
@@ -9,7 +9,7 @@
             "interface": "Ethernet1"
          },
          "expected_results": {
-            "device": "acc01",
+            "device": "acc01.d",
             "port_id": "Ethernet7"
          }
       },
@@ -19,7 +19,7 @@
             "interface": "Ethernet2"
          },
          "expected_results": {
-            "device": "acc01",
+            "device": "acc01.d",
             "port_id": "Ethernet8"
          }
       },
@@ -29,7 +29,7 @@
             "interface": "Ethernet3"
          },
          "expected_results": {
-            "device": "acc02",
+            "device": "acc02.d",
             "port_id": "Ethernet7"
          }
       },
@@ -39,7 +39,7 @@
             "interface": "Ethernet4"
          },
          "expected_results": {
-            "device": "acc02",
+            "device": "acc02.d",
             "port_id": "Ethernet8"
          }
       }

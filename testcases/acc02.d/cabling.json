@@ -1,6 +1,6 @@
 {
    "service": "cabling",
-   "device": "acc01",
+   "device": "acc02.d",
    "exclusive": false,
    "tests": [
       {
@@ -9,8 +9,8 @@
             "interface": "Ethernet7"
          },
          "expected_results": {
-            "device": "core01",
-            "port_id": "Ethernet1"
+            "device": "core01.d",
+            "port_id": "Ethernet3"
          }
       },
       {
@@ -19,8 +19,8 @@
             "interface": "Ethernet8"
          },
          "expected_results": {
-            "device": "core01",
-            "port_id": "Ethernet2"
+            "device": "core01.d",
+            "port_id": "Ethernet4"
          }
       }
    ]

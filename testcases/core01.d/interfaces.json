@@ -1,6 +1,6 @@
 {
    "service": "interfaces",
-   "device": "acc01",
+   "device": "core01.d",
    "exclusive": true,
    "tests": [
       {
@@ -12,7 +12,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "HR-printer",
+            "desc": "acc01.d-et7",
             "speed": null
          }
       },
@@ -25,7 +25,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "Bob H. phone",
+            "desc": "acc01.d-et8",
             "speed": null
          }
       },
@@ -38,7 +38,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "Alice C. phone",
+            "desc": "acc02.d-et7",
             "speed": null
          }
       },
@@ -46,10 +46,13 @@
          "test_case": null,
          "test_params": {
             "interface": "Ethernet4",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "acc02.d-et8",
+            "speed": null
          }
       },
       {
@@ -76,36 +79,65 @@
          "test_case": null,
          "test_params": {
             "interface": "Ethernet7",
-            "interface_flags": {}
+            "interface_flags": null
          },
          "expected_results": {
-            "used": true,
-            "oper_up": true,
-            "desc": "core01-et1",
-            "speed": null
+            "used": false
          }
       },
       {
          "test_case": null,
          "test_params": {
             "interface": "Ethernet8",
-            "interface_flags": {}
+            "interface_flags": null
          },
          "expected_results": {
-            "used": true,
-            "oper_up": true,
-            "desc": "core01-et2",
-            "speed": null
+            "used": false
          }
       },
       {
          "test_case": null,
          "test_params": {
             "interface": "Management0",
-            "interface_flags": null
+            "interface_flags": {
+               "is_reserved": true
+            }
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": null,
+            "desc": "dynamically assigned by containerlab",
+            "speed": null
+         }
+      },
+      {
+         "test_case": null,
+         "test_params": {
+            "interface": "Vlan10",
+            "interface_flags": {
+               "is_virtual": true
+            }
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "Phones",
+            "speed": null
+         }
+      },
+      {
+         "test_case": null,
+         "test_params": {
+            "interface": "Vlan20",
+            "interface_flags": {
+               "is_virtual": true
+            }
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "Printers",
+            "speed": null
          }
       }
    ]

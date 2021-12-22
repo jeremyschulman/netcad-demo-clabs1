@@ -1,6 +1,6 @@
 {
    "service": "interfaces",
-   "device": "acc02",
+   "device": "acc02.d",
    "exclusive": true,
    "tests": [
       {
@@ -72,7 +72,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "core01-et3",
+            "desc": "core01.d-et3",
             "speed": null
          }
       },
@@ -85,7 +85,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "core01-et4",
+            "desc": "core01.d-et4",
             "speed": null
          }
       },

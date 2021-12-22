@@ -1,6 +1,6 @@
 {
    "service": "vlans",
-   "device": "core01",
+   "device": "acc01.d",
    "exclusive": true,
    "tests": [
       {
@@ -15,8 +15,10 @@
                "description": "Voip Phone ports"
             },
             "interfaces": [
-               "Ethernet1",
-               "Ethernet2"
+               "Ethernet2",
+               "Ethernet3",
+               "Ethernet7",
+               "Ethernet8"
             ]
          }
       },
@@ -33,7 +35,8 @@
             },
             "interfaces": [
                "Ethernet1",
-               "Ethernet2"
+               "Ethernet7",
+               "Ethernet8"
             ]
          }
       },

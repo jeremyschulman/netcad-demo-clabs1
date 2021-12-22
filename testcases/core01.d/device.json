@@ -1,16 +1,16 @@
 {
    "service": "device",
-   "device": "acc01",
+   "device": "core01.d",
    "exclusive": true,
    "tests": [
       {
          "test_case": null,
          "test_params": {
-            "device": "acc01",
+            "device": "core01.d",
             "os_name": "eos"
          },
          "expected_results": {
-            "product_model": "cEOS-8"
+            "product_model": "cEOSLab"
          }
       }
    ],
@@ -20,7 +20,7 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "HR-printer",
+         "desc": "acc01.d-et7",
          "profile_flags": {}
       },
       "Ethernet2": {
@@ -28,7 +28,7 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "Bob H. phone",
+         "desc": "acc01.d-et8",
          "profile_flags": {}
       },
       "Ethernet3": {
@@ -36,15 +36,15 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "Alice C. phone",
+         "desc": "acc02.d-et7",
          "profile_flags": {}
       },
       "Ethernet4": {
          "name": "Ethernet4",
-         "enabled": false,
-         "used": false,
-         "port_type": null,
-         "desc": null,
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "acc02.d-et8",
          "profile_flags": {}
       },
       "Ethernet5": {
@@ -65,27 +65,49 @@
       },
       "Ethernet7": {
          "name": "Ethernet7",
-         "enabled": true,
-         "used": true,
-         "port_type": "EbraTestPhyPort",
-         "desc": "core01-et1",
-         "profile_flags": {}
-      },
-      "Ethernet8": {
-         "name": "Ethernet8",
-         "enabled": true,
-         "used": true,
-         "port_type": "EbraTestPhyPort",
-         "desc": "core01-et2",
-         "profile_flags": {}
-      },
-      "Management0": {
-         "name": "Management0",
          "enabled": false,
          "used": false,
          "port_type": null,
          "desc": null,
          "profile_flags": {}
+      },
+      "Ethernet8": {
+         "name": "Ethernet8",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Management0": {
+         "name": "Management0",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "dynamically assigned by containerlab",
+         "profile_flags": {
+            "is_reserved": true
+         }
+      },
+      "Vlan10": {
+         "name": "Vlan10",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "Phones",
+         "profile_flags": {
+            "is_virtual": true
+         }
+      },
+      "Vlan20": {
+         "name": "Vlan20",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "Printers",
+         "profile_flags": {
+            "is_virtual": true
+         }
       }
    }
 }
