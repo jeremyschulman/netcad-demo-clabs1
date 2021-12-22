@@ -1,0 +1,6 @@
+{
+   "service": "transceivers",
+   "device": "core01.d",
+   "exclusive": true,
+   "tests": []
+}

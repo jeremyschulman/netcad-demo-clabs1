@@ -1,0 +1,12 @@
+{% import "macros/macro_intfadmin.jinja2" as intf %}
+{% set if_prof = interface.profile %}
+interface {{ interface.name }}
+   description {{ interface.desc }}
+    {% if if_prof.native_vlan is defined %}
+   switchport trunk native vlan {{ if_prof.native_vlan.vlan_id }}
+    {% endif %}
+    {% set allowed_vlans = (interface | vlan_ranges) or "none" %}
+   switchport trunk allowed vlan {{ allowed_vlans }}
+   switchport mode trunk
+   {{ intf.intf_admin(interface.enabled) }}
+!

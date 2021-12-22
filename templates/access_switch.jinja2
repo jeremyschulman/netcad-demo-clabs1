@@ -1,0 +1,16 @@
+!
+hostname {{ device.name }}
+!
+{% include "aaa.jinja2" %}
+!
+{% include "mgmt.jinja2" %}
+!
+! VLANs
+!
+{% include "vlans.jinja2" %}
+!
+! Interfaces
+!
+{% include "interfaces.jinja2" %}
+!
+end

@@ -1,0 +1,7 @@
+{%- macro intf_admin(enabled) -%}
+{%- if enabled -%}
+no shutdown
+{%- else -%}
+shutdown
+{%- endif -%}
+{%- endmacro -%}

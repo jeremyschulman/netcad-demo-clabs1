@@ -1,0 +1,7 @@
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$KdwOLLTVv5f5k6ff$ObMF13B/Pp37xXUkFNc/iOzq5aV2P9OeLzQwQ7dYUvG6dN0MYAseRal70yHbJnIuC76dbvmZspM6oMxwhopYb0
+!
+aaa authentication login default local
+aaa authentication enable default local
+aaa authorization exec default local

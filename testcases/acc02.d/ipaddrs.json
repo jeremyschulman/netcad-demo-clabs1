@@ -1,0 +1,6 @@
+{
+   "service": "ipaddrs",
+   "device": "acc02.d",
+   "exclusive": true,
+   "tests": []
+}

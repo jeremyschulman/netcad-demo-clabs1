@@ -1,0 +1,113 @@
+{
+   "service": "device",
+   "device": "core01.d",
+   "exclusive": true,
+   "tests": [
+      {
+         "test_case": null,
+         "test_params": {
+            "device": "core01.d",
+            "os_name": "eos"
+         },
+         "expected_results": {
+            "product_model": "cEOSLab"
+         }
+      }
+   ],
+   "interfaces": {
+      "Ethernet1": {
+         "name": "Ethernet1",
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "acc01.d-et7",
+         "profile_flags": {}
+      },
+      "Ethernet2": {
+         "name": "Ethernet2",
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "acc01.d-et8",
+         "profile_flags": {}
+      },
+      "Ethernet3": {
+         "name": "Ethernet3",
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "acc02.d-et7",
+         "profile_flags": {}
+      },
+      "Ethernet4": {
+         "name": "Ethernet4",
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "acc02.d-et8",
+         "profile_flags": {}
+      },
+      "Ethernet5": {
+         "name": "Ethernet5",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Ethernet6": {
+         "name": "Ethernet6",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Ethernet7": {
+         "name": "Ethernet7",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Ethernet8": {
+         "name": "Ethernet8",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Management0": {
+         "name": "Management0",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "dynamically assigned by containerlab",
+         "profile_flags": {
+            "is_reserved": true
+         }
+      },
+      "Vlan10": {
+         "name": "Vlan10",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "Phones",
+         "profile_flags": {
+            "is_virtual": true
+         }
+      },
+      "Vlan20": {
+         "name": "Vlan20",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "Printers",
+         "profile_flags": {
+            "is_virtual": true
+         }
+      }
+   }
+}

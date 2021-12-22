@@ -1,0 +1,34 @@
+{
+   "service": "ipaddrs",
+   "device": "core01.d",
+   "exclusive": true,
+   "tests": [
+      {
+         "test_case": null,
+         "test_params": {
+            "if_name": "Management0"
+         },
+         "expected_results": {
+            "if_ipaddr": "is_reserved"
+         }
+      },
+      {
+         "test_case": null,
+         "test_params": {
+            "if_name": "Vlan10"
+         },
+         "expected_results": {
+            "if_ipaddr": "10.10.1.1/24"
+         }
+      },
+      {
+         "test_case": null,
+         "test_params": {
+            "if_name": "Vlan20"
+         },
+         "expected_results": {
+            "if_ipaddr": "10.10.2.1/24"
+         }
+      }
+   ]
+}

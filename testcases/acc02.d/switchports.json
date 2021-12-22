@@ -1,0 +1,37 @@
+{
+   "service": "switchports",
+   "device": "acc02.d",
+   "exclusive": true,
+   "tests": [
+      {
+         "test_case": "switchport",
+         "test_params": {
+            "if_name": "Ethernet7"
+         },
+         "expected_results": {
+            "switchport_mode": "trunk",
+            "native_vlan": {
+               "name": "not_vlan_1",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            },
+            "trunk_allowed_vlans": []
+         }
+      },
+      {
+         "test_case": "switchport",
+         "test_params": {
+            "if_name": "Ethernet8"
+         },
+         "expected_results": {
+            "switchport_mode": "trunk",
+            "native_vlan": {
+               "name": "not_vlan_1",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            },
+            "trunk_allowed_vlans": []
+         }
+      }
+   ]
+}

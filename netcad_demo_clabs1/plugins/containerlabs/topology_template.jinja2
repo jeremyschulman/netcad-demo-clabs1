@@ -1,0 +1,34 @@
+name: {{ design.name }}
+
+topology:
+  defaults:
+      env:
+        INTFTYPE: et
+
+  nodes:
+    br-dummy:
+      kind: bridge
+
+    {% for device_name in design.devices %}
+    {{ device_name}}:
+      kind: ceos
+      image: ceos:latest
+      startup-config: {{ device_name }}.cfg
+    {% endfor %}
+
+  links:
+
+    # used cabled data ports
+    {% for side_a, side_b in cabled_ports %}
+    - endpoints: ["{{ side_a }}", "{{ side_b }}"]
+    {% endfor %}
+
+    # used uncabled data ports
+    {% for side_a, dummy_id in uncabled_ports %}
+    - endpoints: ["{{ side_a }}", "br-dummy:{{ dummy_id }}"]
+    {% endfor %}
+
+    # unused data ports
+    {% for side_a, dummy_id in unused_ports %}
+    - endpoints: ["{{ side_a }}", "br-dummy:{{ dummy_id }}"]
+    {% endfor %}
