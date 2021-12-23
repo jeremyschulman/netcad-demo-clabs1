@@ -46,9 +46,11 @@ def set_mgmt_ipaddr(device: Device, ipam: IPAM, host_offset: int):
     oob_subnet = ipam["OOB"]
 
     with device.interfaces["Management0"] as ma0:
+        ma0_if_ipaddr = oob_subnet.interface(name=ma0, offset_octet=host_offset)
         ma0.profile = Management0(
             if_ipaddr=oob_subnet.interface(name=ma0, offset_octet=host_offset)
         )
+        device.primary_ip = ma0_if_ipaddr.ip
 
 
 def create_vlan_interfaces(device: CoreSwitch, ipam: IPAM, host_offset: int):
