@@ -31,7 +31,9 @@
     supports = ["eos"]
     package = "netcam_aioeos"
 
-    [[netcam.plugins.config]]
+    [netcam.plugins.config]
+        # the EOS credentials will be sourced from these enviornment variables.
+        # so these need to be exported before use, or an error is reported.
         env.username = "NETWORK_USERNAME"
         env.password = "NETWORK_PASSWORD"
 
