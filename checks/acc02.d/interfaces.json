@@ -1,5 +1,5 @@
 {
-   "service": "interfaces",
+   "name": "interfaces",
    "device": "acc02.d",
    "exclusive": true,
    "checks": [

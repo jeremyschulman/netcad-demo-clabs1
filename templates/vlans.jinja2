@@ -1,3 +1,7 @@
+vlan 1
+   name vlan_1_unused
+   state suspend
+!
 {% for vlan in device.services['vlans'].all_vlans() %}
 vlan {{ vlan.vlan_id }}
     name {{ vlan.name }}

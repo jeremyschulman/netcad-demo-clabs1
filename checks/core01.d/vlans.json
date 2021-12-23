@@ -1,7 +1,29 @@
 {
-   "service": "vlans",
+   "name": "vlans",
    "device": "core01.d",
-   "exclusive": true,
+   "exclusive": {
+      "check_type": "exclusive_list",
+      "check_params": null,
+      "expected_results": {
+         "vlans": [
+            {
+               "name": "Phones",
+               "vlan_id": 10,
+               "description": "Voip Phone ports"
+            },
+            {
+               "name": "Printers",
+               "vlan_id": 20,
+               "description": "Printer ports"
+            },
+            {
+               "name": "not_vlan_1",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            }
+         ]
+      }
+   },
    "checks": [
       {
          "check_type": "interfaces",

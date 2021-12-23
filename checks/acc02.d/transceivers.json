@@ -1,5 +1,5 @@
 {
-   "service": "transceivers",
+   "name": "transceivers",
    "device": "acc02.d",
    "exclusive": true,
    "checks": []

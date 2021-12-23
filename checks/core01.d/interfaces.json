@@ -1,5 +1,5 @@
 {
-   "service": "interfaces",
+   "name": "interfaces",
    "device": "core01.d",
    "exclusive": true,
    "checks": [
