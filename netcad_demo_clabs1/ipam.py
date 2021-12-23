@@ -4,7 +4,7 @@ from netcad.ipam import IPAM
 from . import vlans
 
 
-def create_site_ipam(design: Design) -> IPAM:
+def create_site_ipam(design: Design, bld_id: int, flr_id: int) -> IPAM:
 
     ipam = IPAM(name=design.name)
 

@@ -1,5 +1,8 @@
 name: {{ design.name }}
 
+# disable container name prefixing so that the etc-hosts file mirrors the node name
+prefix: ""
+
 topology:
   defaults:
       env:

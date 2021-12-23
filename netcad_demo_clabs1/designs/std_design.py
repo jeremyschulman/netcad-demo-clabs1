@@ -8,20 +8,22 @@ from netcad.vlan.vlan_design_service import (
     VlansDesignService,
     DeviceVlanDesignServiceLike,
 )
+
 from netcad.vlan import VlanProfileLike
 
-from .profiles.clab_ma0 import Management0
-from .device_roles import CoreSwitch, Acc01Switch, Acc02Switch
-from .ipam import create_site_ipam, IPAM
+from ..profiles.clab_ma0 import Management0
+from ..device_roles import CoreSwitch, Acc01Switch, Acc02Switch
+from ..ipam import create_site_ipam, IPAM
 
 
-def create_design(design: Design) -> Design:
+def create_std_design(design: Design) -> Design:
+    bld_id, fl_id = design.config["building"], design.config["floor"]
 
-    ipam = create_site_ipam(design)
+    ipam = create_site_ipam(design, bld_id=bld_id, flr_id=fl_id)
 
-    core = CoreSwitch(name="core01.d")
-    sw1 = Acc01Switch(name="acc01.d")
-    sw2 = Acc02Switch(name="acc02.d")
+    core = CoreSwitch(name="core-1", bld_id=bld_id, fl_id=fl_id)
+    sw1 = Acc01Switch(name="acc-1", bld_id=bld_id, fl_id=fl_id)
+    sw2 = Acc02Switch(name="acc-2", bld_id=bld_id, fl_id=fl_id)
 
     all_devs = [core, sw1, sw2]
 
@@ -58,10 +60,8 @@ def create_vlan_interfaces(device: CoreSwitch, ipam: IPAM, host_offset: int):
     vlan_svc: DeviceVlanDesignServiceLike = device.services["vlans"]
 
     # obtain the list of all vlans used by this device in the design
-
     dev_vlans = vlan_svc.all_vlans()
 
-    #
     subnets_used = [
         (vlan, subnet) for vlan, subnet in ipam.items() if vlan in dev_vlans
     ]
