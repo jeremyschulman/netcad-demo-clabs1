@@ -1,11 +1,11 @@
 {
-   "service": "interfaces",
+   "name": "interfaces",
    "device": "core01.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet1",
             "interface_flags": {}
          },
@@ -17,8 +17,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet2",
             "interface_flags": {}
          },
@@ -30,8 +30,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet3",
             "interface_flags": {}
          },
@@ -43,8 +43,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet4",
             "interface_flags": {}
          },
@@ -56,8 +56,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet5",
             "interface_flags": null
          },
@@ -66,8 +66,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet6",
             "interface_flags": null
          },
@@ -76,8 +76,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet7",
             "interface_flags": null
          },
@@ -86,8 +86,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet8",
             "interface_flags": null
          },
@@ -96,23 +96,21 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Management0",
-            "interface_flags": {
-               "is_reserved": true
-            }
+            "interface_flags": {}
          },
          "expected_results": {
             "used": true,
-            "oper_up": null,
-            "desc": "dynamically assigned by containerlab",
+            "oper_up": true,
+            "desc": "",
             "speed": null
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Vlan10",
             "interface_flags": {
                "is_virtual": true
@@ -126,8 +124,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Vlan20",
             "interface_flags": {
                "is_virtual": true

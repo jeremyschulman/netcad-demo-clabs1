@@ -1,11 +1,11 @@
 {
-   "service": "device",
+   "name": "device",
    "device": "core01.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "device": "core01.d",
             "os_name": "eos"
          },
@@ -84,10 +84,8 @@
          "enabled": true,
          "used": true,
          "port_type": null,
-         "desc": "dynamically assigned by containerlab",
-         "profile_flags": {
-            "is_reserved": true
-         }
+         "desc": "",
+         "profile_flags": {}
       },
       "Vlan10": {
          "name": "Vlan10",

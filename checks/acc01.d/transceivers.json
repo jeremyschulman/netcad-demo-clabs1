@@ -1,6 +1,6 @@
 {
-   "service": "transceivers",
+   "name": "transceivers",
    "device": "acc01.d",
    "exclusive": true,
-   "tests": []
+   "checks": []
 }

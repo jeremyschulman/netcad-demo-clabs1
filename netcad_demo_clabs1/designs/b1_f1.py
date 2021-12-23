@@ -20,19 +20,11 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-from invoke import task
+from netcad.design_services import Design
+
+from .std_design import create_std_design
 
 
-@task
-def precheck(ctx):
-    ctx.run("black .")
-    ctx.run("pre-commit run -a")
-    ctx.run("interrogate -c pyproject.toml", pty=True)
-
-
-@task
-def clean(ctx):
-    ctx.run("python setup.py clean")
-    ctx.run("rm -rf netcfgbu.egg-info")
-    ctx.run("rm -rf .pytest_cache .pytest_tmpdir .coverage")
-    ctx.run("rm -rf htmlcov")
+def create_design(design: Design) -> Design:
+    design = create_std_design(design)
+    return design

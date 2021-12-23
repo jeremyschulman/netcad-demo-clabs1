@@ -1,0 +1,16 @@
+{
+   "name": "ipaddrs",
+   "device": "acc01.d",
+   "exclusive": true,
+   "checks": [
+      {
+         "check_type": null,
+         "check_params": {
+            "if_name": "Management0"
+         },
+         "expected_results": {
+            "if_ipaddr": "172.20.20.3/24"
+         }
+      }
+   ]
+}

@@ -5,9 +5,35 @@
 # -----------------------------------------------------------------------------
 
 [[design]]
-    name = "clab1"
-    description = "ContainerLabs basic switching demo"
-    package = "netcad_demo_clabs1"
+    name = "b1.f1"
+    description = "Building 1, Floor 1"
+    package = "netcad_demo_clabs1.b1_f1"
+
+    [design.config]
+        net_id = 1
+        building = 1
+        floor = 1
+
+ [[design]]
+    name = "b1.f2"
+    description = "Building 1, Floor 2"
+    package = "netcad_demo_clabs1.b1_f2"
+
+    [design.config]
+        net_id = 2
+        building = 1
+        floor = 2
+
+
+[[design]]
+    name = "b2.f9"
+    description = "Building 2, Floor 9"
+    package = "netcad_demo_clabs1.b1_f2"
+
+    [design.config]
+        net_id = 3
+        building = 2
+        floor = 9
 
 # -----------------------------------------------------------------------------
 #
@@ -17,7 +43,7 @@
 
 [[netcad.plugins]]
     name = "ContainerLabs"
-    package = "netcad_demo_clabs1.plugins.containerlabs"
+    package = "netcad_demo_clabs1.containerlabs"
 
 # -----------------------------------------------------------------------------
 #
@@ -31,7 +57,9 @@
     supports = ["eos"]
     package = "netcam_aioeos"
 
-    [[netcam.plugins.config]]
+    [netcam.plugins.config]
+        # the EOS credentials will be sourced from these enviornment variables.
+        # so these need to be exported before use, or an error is reported.
         env.username = "NETWORK_USERNAME"
         env.password = "NETWORK_PASSWORD"
 

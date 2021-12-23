@@ -1,5 +1,8 @@
 name: {{ design.name }}
 
+# disable container name prefixing so that the etc-hosts file mirrors the node name
+prefix: ""
+
 topology:
   defaults:
       env:
@@ -9,11 +12,12 @@ topology:
     br-dummy:
       kind: bridge
 
-    {% for device_name in design.devices %}
+    {% for device_name, device in design.devices.items() %}
     {{ device_name}}:
       kind: ceos
       image: ceos:latest
       startup-config: {{ device_name }}.cfg
+      mgmt_ipv4: {{ device.primary_ip }}
     {% endfor %}
 
   links:

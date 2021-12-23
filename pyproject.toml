@@ -2,6 +2,7 @@
 name = "netcad-demo-clabs1"
 version = "0.1.0"
 description = "NetCadCam demonstration using ContainerLabs"
+readme = "README.md"
 authors = ["Jeremy Schulman"]
 
 [tool.poetry.dependencies]

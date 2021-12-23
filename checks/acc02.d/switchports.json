@@ -1,11 +1,11 @@
 {
-   "service": "switchports",
+   "name": "switchports",
    "device": "acc02.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": "switchport",
-         "test_params": {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet7"
          },
          "expected_results": {
@@ -19,8 +19,8 @@
          }
       },
       {
-         "test_case": "switchport",
-         "test_params": {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet8"
          },
          "expected_results": {

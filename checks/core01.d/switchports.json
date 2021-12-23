@@ -1,11 +1,11 @@
 {
-   "service": "switchports",
+   "name": "switchports",
    "device": "core01.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": "switchport",
-         "test_params": {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet1"
          },
          "expected_results": {
@@ -30,8 +30,8 @@
          }
       },
       {
-         "test_case": "switchport",
-         "test_params": {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet2"
          },
          "expected_results": {
@@ -56,8 +56,8 @@
          }
       },
       {
-         "test_case": "switchport",
-         "test_params": {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet3"
          },
          "expected_results": {
@@ -71,8 +71,8 @@
          }
       },
       {
-         "test_case": "switchport",
-         "test_params": {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet4"
          },
          "expected_results": {
