@@ -1,41 +1,50 @@
 {
    "service": "interfaces",
-   "device": "acc02.d",
+   "device": "acc01.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet1",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "HR-printer",
+            "speed": null
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet2",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "Bob H. phone",
+            "speed": null
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet3",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "Alice C. phone",
+            "speed": null
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet4",
             "interface_flags": null
          },
@@ -44,8 +53,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet5",
             "interface_flags": null
          },
@@ -54,8 +63,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet6",
             "interface_flags": null
          },
@@ -64,39 +73,42 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet7",
             "interface_flags": {}
          },
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "core01.d-et3",
+            "desc": "core01.d-et1",
             "speed": null
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet8",
             "interface_flags": {}
          },
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "core01.d-et4",
+            "desc": "core01.d-et2",
             "speed": null
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Management0",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "",
+            "speed": null
          }
       }
    ]

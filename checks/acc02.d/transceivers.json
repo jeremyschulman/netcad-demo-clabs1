@@ -1,6 +1,6 @@
 {
-   "service": "ipaddrs",
+   "service": "transceivers",
    "device": "acc02.d",
    "exclusive": true,
-   "tests": []
+   "checks": []
 }

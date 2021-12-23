@@ -1,40 +1,56 @@
 {
    "service": "switchports",
-   "device": "core01.d",
+   "device": "acc01.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": "switchport",
-         "test_params": {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet1"
          },
          "expected_results": {
-            "switchport_mode": "trunk",
-            "native_vlan": {
-               "name": "not_vlan_1",
-               "vlan_id": 411,
-               "description": "using different native vlan in demo"
-            },
-            "trunk_allowed_vlans": [
-               {
-                  "name": "Phones",
-                  "vlan_id": 10,
-                  "description": "Voip Phone ports"
-               },
-               {
-                  "name": "Printers",
-                  "vlan_id": 20,
-                  "description": "Printer ports"
-               }
-            ]
+            "switchport_mode": "access",
+            "vlan": {
+               "name": "Printers",
+               "vlan_id": 20,
+               "description": "Printer ports"
+            }
          }
       },
       {
-         "test_case": "switchport",
-         "test_params": {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet2"
          },
          "expected_results": {
+            "switchport_mode": "access",
+            "vlan": {
+               "name": "Phones",
+               "vlan_id": 10,
+               "description": "Voip Phone ports"
+            }
+         }
+      },
+      {
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet3"
+         },
+         "expected_results": {
+            "switchport_mode": "access",
+            "vlan": {
+               "name": "Phones",
+               "vlan_id": 10,
+               "description": "Voip Phone ports"
+            }
+         }
+      },
+      {
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet7"
+         },
+         "expected_results": {
             "switchport_mode": "trunk",
             "native_vlan": {
                "name": "not_vlan_1",
@@ -56,9 +72,9 @@
          }
       },
       {
-         "test_case": "switchport",
-         "test_params": {
-            "if_name": "Ethernet3"
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet8"
          },
          "expected_results": {
             "switchport_mode": "trunk",
@@ -67,22 +83,18 @@
                "vlan_id": 411,
                "description": "using different native vlan in demo"
             },
-            "trunk_allowed_vlans": []
-         }
-      },
-      {
-         "test_case": "switchport",
-         "test_params": {
-            "if_name": "Ethernet4"
-         },
-         "expected_results": {
-            "switchport_mode": "trunk",
-            "native_vlan": {
-               "name": "not_vlan_1",
-               "vlan_id": 411,
-               "description": "using different native vlan in demo"
-            },
-            "trunk_allowed_vlans": []
+            "trunk_allowed_vlans": [
+               {
+                  "name": "Phones",
+                  "vlan_id": 10,
+                  "description": "Voip Phone ports"
+               },
+               {
+                  "name": "Printers",
+                  "vlan_id": 20,
+                  "description": "Printer ports"
+               }
+            ]
          }
       }
    ]

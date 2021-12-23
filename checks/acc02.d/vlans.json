@@ -2,10 +2,10 @@
    "service": "vlans",
    "device": "acc02.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": "interfaces",
-         "test_params": {
+         "check_type": "interfaces",
+         "check_params": {
             "vlan_id": 411
          },
          "expected_results": {

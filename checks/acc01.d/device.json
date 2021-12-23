@@ -1,12 +1,12 @@
 {
    "service": "device",
-   "device": "core01.d",
+   "device": "acc01.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": null,
-         "test_params": {
-            "device": "core01.d",
+         "check_type": null,
+         "check_params": {
+            "device": "acc01.d",
             "os_name": "eos"
          },
          "expected_results": {
@@ -20,7 +20,7 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "acc01.d-et7",
+         "desc": "HR-printer",
          "profile_flags": {}
       },
       "Ethernet2": {
@@ -28,7 +28,7 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "acc01.d-et8",
+         "desc": "Bob H. phone",
          "profile_flags": {}
       },
       "Ethernet3": {
@@ -36,15 +36,15 @@
          "enabled": true,
          "used": true,
          "port_type": "EbraTestPhyPort",
-         "desc": "acc02.d-et7",
+         "desc": "Alice C. phone",
          "profile_flags": {}
       },
       "Ethernet4": {
          "name": "Ethernet4",
-         "enabled": true,
-         "used": true,
-         "port_type": "EbraTestPhyPort",
-         "desc": "acc02.d-et8",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
          "profile_flags": {}
       },
       "Ethernet5": {
@@ -65,18 +65,18 @@
       },
       "Ethernet7": {
          "name": "Ethernet7",
-         "enabled": false,
-         "used": false,
-         "port_type": null,
-         "desc": null,
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "core01.d-et1",
          "profile_flags": {}
       },
       "Ethernet8": {
          "name": "Ethernet8",
-         "enabled": false,
-         "used": false,
-         "port_type": null,
-         "desc": null,
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "core01.d-et2",
          "profile_flags": {}
       },
       "Management0": {
@@ -84,30 +84,8 @@
          "enabled": true,
          "used": true,
          "port_type": null,
-         "desc": "dynamically assigned by containerlab",
-         "profile_flags": {
-            "is_reserved": true
-         }
-      },
-      "Vlan10": {
-         "name": "Vlan10",
-         "enabled": true,
-         "used": true,
-         "port_type": null,
-         "desc": "Phones",
-         "profile_flags": {
-            "is_virtual": true
-         }
-      },
-      "Vlan20": {
-         "name": "Vlan20",
-         "enabled": true,
-         "used": true,
-         "port_type": null,
-         "desc": "Printers",
-         "profile_flags": {
-            "is_virtual": true
-         }
+         "desc": "",
+         "profile_flags": {}
       }
    }
 }

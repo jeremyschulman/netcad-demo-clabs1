@@ -2,10 +2,10 @@
    "service": "vlans",
    "device": "acc01.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": "interfaces",
-         "test_params": {
+         "check_type": "interfaces",
+         "check_params": {
             "vlan_id": 10
          },
          "expected_results": {
@@ -23,8 +23,8 @@
          }
       },
       {
-         "test_case": "interfaces",
-         "test_params": {
+         "check_type": "interfaces",
+         "check_params": {
             "vlan_id": 20
          },
          "expected_results": {
@@ -41,8 +41,8 @@
          }
       },
       {
-         "test_case": "interfaces",
-         "test_params": {
+         "check_type": "interfaces",
+         "check_params": {
             "vlan_id": 411
          },
          "expected_results": {

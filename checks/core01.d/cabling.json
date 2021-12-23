@@ -2,10 +2,10 @@
    "service": "cabling",
    "device": "core01.d",
    "exclusive": false,
-   "tests": [
+   "checks": [
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet1"
          },
          "expected_results": {
@@ -14,8 +14,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet2"
          },
          "expected_results": {
@@ -24,8 +24,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet3"
          },
          "expected_results": {
@@ -34,8 +34,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet4"
          },
          "expected_results": {

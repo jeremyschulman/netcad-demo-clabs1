@@ -2,19 +2,19 @@
    "service": "ipaddrs",
    "device": "core01.d",
    "exclusive": true,
-   "tests": [
+   "checks": [
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "if_name": "Management0"
          },
          "expected_results": {
-            "if_ipaddr": "is_reserved"
+            "if_ipaddr": "172.20.20.2/24"
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "if_name": "Vlan10"
          },
          "expected_results": {
@@ -22,8 +22,8 @@
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "if_name": "Vlan20"
          },
          "expected_results": {

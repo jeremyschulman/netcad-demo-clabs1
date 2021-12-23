@@ -1,26 +1,26 @@
 {
    "service": "cabling",
-   "device": "acc02.d",
+   "device": "acc01.d",
    "exclusive": false,
-   "tests": [
+   "checks": [
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet7"
          },
          "expected_results": {
             "device": "core01.d",
-            "port_id": "Ethernet3"
+            "port_id": "Ethernet1"
          }
       },
       {
-         "test_case": null,
-         "test_params": {
+         "check_type": null,
+         "check_params": {
             "interface": "Ethernet8"
          },
          "expected_results": {
             "device": "core01.d",
-            "port_id": "Ethernet4"
+            "port_id": "Ethernet2"
          }
       }
    ]
