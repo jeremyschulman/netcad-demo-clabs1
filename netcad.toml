@@ -10,6 +10,7 @@
     package = "netcad_demo_clabs1.b1_f1"
 
     [design.config]
+        net_id = 1
         building = 1
         floor = 1
 
@@ -19,8 +20,10 @@
     package = "netcad_demo_clabs1.b1_f2"
 
     [design.config]
+        net_id = 2
         building = 1
         floor = 2
+
 
 [[design]]
     name = "b2.f9"
@@ -28,6 +31,7 @@
     package = "netcad_demo_clabs1.b1_f2"
 
     [design.config]
+        net_id = 3
         building = 2
         floor = 9
 
@@ -39,7 +43,7 @@
 
 [[netcad.plugins]]
     name = "ContainerLabs"
-    package = "netcad_demo_clabs1.plugins.containerlabs"
+    package = "netcad_demo_clabs1.containerlabs"
 
 # -----------------------------------------------------------------------------
 #
