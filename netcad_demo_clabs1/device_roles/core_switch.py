@@ -20,14 +20,32 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-from enum import auto
-from netcad.helpers import StrEnum
+# -----------------------------------------------------------------------------
+# System Imports
+# -----------------------------------------------------------------------------
+
+from pathlib import Path
+
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
+
+from .any_device import AnyContainerEosDevice
+
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["CoreSwitch"]
+
+# -----------------------------------------------------------------------------
+#
+#                               CODE BEGINS
+#
+# -----------------------------------------------------------------------------
 
 
-class DemoCabling(StrEnum):
-
-    uplink_core01_acc01_1 = auto()
-    uplink_core01_acc01_2 = auto()
-
-    uplink_core01_acc02_1 = auto()
-    uplink_core01_acc02_2 = auto()
+class CoreSwitch(AnyContainerEosDevice):
+    sort_key = (0, 0)
+    device_base_name = "core"
+    template = Path("core_switch.jinja2")

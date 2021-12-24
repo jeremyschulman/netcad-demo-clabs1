@@ -20,50 +20,50 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-# -----------------------------------------------------------------------------
-# Private Imports
-# -----------------------------------------------------------------------------
+from netcad.device import PseudoDevice, DeviceInterface
+from netcad.device.l2_interfaces import InterfaceL2Trunk
 
-from ..cabling import DemoCabling
-from ..profiles.trunks import AccToCoreUplink
-from ..profiles import access
-from .access import AccessSwitch
+from ..profiles.trunks import PeeringTrunk
+from ..profiles.phy_port import port_ebra
+from .any_device import AnyDevice
+from .. import vlans
 
+__all__ = ["FloorAccessPoint"]
 
-# -----------------------------------------------------------------------------
-# Exports
-# -----------------------------------------------------------------------------
-
-__all__ = ["Acc01Switch"]
 
 # -----------------------------------------------------------------------------
-#
-#                               CODE BEGINS
-#
+# Base class for all access-point devices.
 # -----------------------------------------------------------------------------
 
 
-class Acc01Switch(AccessSwitch):
-    sort_key = (1, 1)
+class AccessPoint(AnyDevice, PseudoDevice):
+    device_base_name = "ap"
+    sort_key = (2, 0)
+    product_model = "MR84"
+    os_name = "meraki"
 
+    def build_uplink(self, dev_iface: DeviceInterface):
+        dev: AnyDevice = dev_iface.device
+        iface_w0 = self.interfaces["wired0"]
+        cable_id = f"uplink_{self.name}_{dev.name}"
+        dev_iface.cable_id = cable_id
+        dev_iface.profile = PeeringTrunk()
+        iface_w0.cable_id = cable_id
 
-if_defs = Acc01Switch.interfaces
 
 # -----------------------------------------------------------------------------
-#                        Host facing ports
+# Standard "Floor" access point will have VLANs for Visitor and Employees
 # -----------------------------------------------------------------------------
 
-if_defs["Ethernet1"].profile = access.Printer(desc="HR-printer")
-if_defs["Ethernet2"].profile = access.Phone(desc="Bob H. phone")
-if_defs["Ethernet3"].profile = access.Phone(desc="Alice C. phone")
 
-# -----------------------------------------------------------------------------
-#                        Uplink ports to core switch
-# -----------------------------------------------------------------------------
+class FloorAccessPoint(AccessPoint):
+    pass
 
-with if_defs["Ethernet7"] as eth7, if_defs["Ethernet8"] as eth8:
-    eth7.profile = AccToCoreUplink()
-    eth7.cable_id = DemoCabling.uplink_core01_acc01_1
 
-    eth8.profile = AccToCoreUplink()
-    eth8.cable_id = DemoCabling.uplink_core01_acc01_2
+class FloorAPTrunkPort(InterfaceL2Trunk):
+    port_profile = port_ebra
+    native_vlan = vlans.vlan_native
+    vlans = [vlans.vlan_wifi_employee, vlans.vlan_wifi_visitor]
+
+
+FloorAccessPoint.interfaces["wired0"].profile = FloorAPTrunkPort()

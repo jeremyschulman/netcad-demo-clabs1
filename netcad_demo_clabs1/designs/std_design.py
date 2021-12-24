@@ -20,9 +20,17 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# -----------------------------------------------------------------------------
+# System Imports
+# -----------------------------------------------------------------------------
+
 from pathlib import Path
 from itertools import islice
 from ipaddress import IPv4Interface
+
+# -----------------------------------------------------------------------------
+# Public Imports
+# -----------------------------------------------------------------------------
 
 from netcad.design_services import Design
 from netcad.topology import TopologyDesignService
@@ -34,21 +42,44 @@ from netcad.vlan.vlan_design_service import (
 
 from netcad.vlan import VlanProfileLike
 
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
+
 from ..profiles.clab_ma0 import Management0
-from ..device_roles import CoreSwitch, Acc01Switch, Acc02Switch, AnyDevice
+from ..device_roles import CoreSwitch, AccessSwitch, AnyDevice, FloorAccessPoint
 from ..ipam import create_site_ipam, IPAM
+
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["create_std_design"]
+
+
+# -----------------------------------------------------------------------------
+#
+#                                 CODE BEGINS
+#
+# -----------------------------------------------------------------------------
 
 
 def create_std_design(design: Design) -> Design:
+
     bld_id, fl_id = design.config["building"], design.config["floor"]
 
     ipam = create_site_ipam(design, bld_id=bld_id, flr_id=fl_id)
 
-    core = CoreSwitch(name="core-1", bld_id=bld_id, fl_id=fl_id)
-    sw1 = Acc01Switch(name="acc-1", bld_id=bld_id, fl_id=fl_id)
-    sw2 = Acc02Switch(name="acc-2", bld_id=bld_id, fl_id=fl_id)
+    core = CoreSwitch(dev_id=1, bld_id=bld_id, fl_id=fl_id)
+    sw1 = AccessSwitch(dev_id=1, bld_id=bld_id, fl_id=fl_id)
+    sw2 = AccessSwitch(dev_id=2, bld_id=bld_id, fl_id=fl_id)
+    ap1 = FloorAccessPoint(dev_id=1, bld_id=bld_id, fl_id=fl_id)
 
-    all_devs = [core, sw1, sw2]
+    sw1.build_uplink_to_core(core)
+    sw2.build_uplink_to_core(core)
+    ap1.build_uplink(sw1.interfaces["Ethernet1"])
+
+    all_devs = [core, sw1, sw2, ap1]
 
     design.add_devices(*all_devs).add_services(
         TopologyDesignService(topology_name=design.name, devices=all_devs),
@@ -59,7 +90,7 @@ def create_std_design(design: Design) -> Design:
     set_mgmt_ipaddr(sw1, ipam, 3, net_id=design.config["net_id"])
     set_mgmt_ipaddr(sw2, ipam, 4, net_id=design.config["net_id"])
 
-    create_vlan_interfaces(core, ipam, host_offset=1)
+    # create_vlan_interfaces(core, ipam, host_offset=1)
 
     design.update()
 

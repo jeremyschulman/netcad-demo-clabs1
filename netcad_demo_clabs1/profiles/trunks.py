@@ -31,7 +31,7 @@ from netcad_demo_clabs1.vlans import vlan_native
 from netcad_demo_clabs1.profiles.phy_port import port_ebra
 
 
-class CorePeeringTrunk(InterfaceL2Trunk):
+class PeeringTrunk(InterfaceL2Trunk):
     """
     Used by core switches, automatically uses the same VLANs as defined on the
     connected access switches.
@@ -44,7 +44,7 @@ class CorePeeringTrunk(InterfaceL2Trunk):
     template = Path("interface_trunk.jinja2")
 
 
-class AccToCoreUplink(InterfaceL2Trunk):
+class UplinkTrunk(InterfaceL2Trunk):
     """
     Used by access switches, automatically uses all VLANs that are defined on
     the local interface ports.

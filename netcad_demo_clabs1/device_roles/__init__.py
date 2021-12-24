@@ -21,6 +21,6 @@
 #  SOFTWARE.
 
 from .any_device import AnyDevice
-from .core import CoreSwitch
-from .acc01 import Acc01Switch
-from .acc02 import Acc02Switch
+from .core_switch import CoreSwitch
+from .access_switch import AccessSwitch
+from .access_point import FloorAccessPoint

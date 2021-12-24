@@ -23,7 +23,7 @@
 from netcad.vlan import VlanProfile
 
 vlan_native = VlanProfile(
-    vlan_id=411, name="not_vlan_1", description="using different native vlan in demo"
+    vlan_id=411, name="native_vlan", description="using different native vlan in demo"
 )
 
 
@@ -37,4 +37,12 @@ vlan_media_iptvs = VlanProfile(
 
 vlan_inband_mgmt = VlanProfile(
     vlan_id=911, name="Inband_MGMT", description="SVI used for inband management"
+)
+
+vlan_wifi_employee = VlanProfile(
+    vlan_id=300, name="WIFI-Employee", description="For Employee Wifi"
+)
+
+vlan_wifi_visitor = VlanProfile(
+    vlan_id=301, name="WIFI-Visitor", description="For Visitor Wifi"
 )
