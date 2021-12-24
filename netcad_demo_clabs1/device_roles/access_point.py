@@ -22,6 +22,7 @@
 
 from netcad.device import PseudoDevice, DeviceInterface
 from netcad.device.l2_interfaces import InterfaceL2Trunk
+from netcad.topology import NoValidateCabling
 
 from ..profiles.trunks import PeeringTrunk
 from ..profiles.phy_port import port_ebra
@@ -49,6 +50,7 @@ class AccessPoint(AnyDevice, PseudoDevice):
         dev_iface.cable_id = cable_id
         dev_iface.profile = PeeringTrunk()
         iface_w0.cable_id = cable_id
+        iface_w0.cable_port_id = NoValidateCabling
 
 
 # -----------------------------------------------------------------------------

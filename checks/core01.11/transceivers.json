@@ -1,0 +1,6 @@
+{
+   "name": "transceivers",
+   "device": "core01.11",
+   "exclusive": true,
+   "checks": []
+}

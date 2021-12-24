@@ -1,0 +1,91 @@
+{
+   "name": "device",
+   "device": "acc01.11",
+   "exclusive": true,
+   "checks": [
+      {
+         "check_type": null,
+         "check_params": {
+            "device": "acc01.11",
+            "os_name": "eos"
+         },
+         "expected_results": {
+            "product_model": "cEOSLab"
+         }
+      }
+   ],
+   "interfaces": {
+      "Ethernet1": {
+         "name": "Ethernet1",
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "ap01.11-wi0",
+         "profile_flags": {}
+      },
+      "Ethernet2": {
+         "name": "Ethernet2",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Ethernet3": {
+         "name": "Ethernet3",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Ethernet4": {
+         "name": "Ethernet4",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Ethernet5": {
+         "name": "Ethernet5",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Ethernet6": {
+         "name": "Ethernet6",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
+         "profile_flags": {}
+      },
+      "Ethernet7": {
+         "name": "Ethernet7",
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "core01.11-et1",
+         "profile_flags": {}
+      },
+      "Ethernet8": {
+         "name": "Ethernet8",
+         "enabled": true,
+         "used": true,
+         "port_type": "EbraTestPhyPort",
+         "desc": "core01.11-et2",
+         "profile_flags": {}
+      },
+      "Management0": {
+         "name": "Management0",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "",
+         "profile_flags": {}
+      }
+   }
+}

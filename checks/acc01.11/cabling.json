@@ -1,0 +1,27 @@
+{
+   "name": "cabling",
+   "device": "acc01.11",
+   "exclusive": false,
+   "checks": [
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet7"
+         },
+         "expected_results": {
+            "device": "core01.11",
+            "port_id": "Ethernet1"
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet8"
+         },
+         "expected_results": {
+            "device": "core01.11",
+            "port_id": "Ethernet2"
+         }
+      }
+   ]
+}

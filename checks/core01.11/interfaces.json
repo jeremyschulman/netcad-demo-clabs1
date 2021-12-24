@@ -1,0 +1,112 @@
+{
+   "name": "interfaces",
+   "device": "core01.11",
+   "exclusive": true,
+   "checks": [
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet1",
+            "interface_flags": {}
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "acc01.11-et7",
+            "speed": null
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet2",
+            "interface_flags": {}
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "acc01.11-et8",
+            "speed": null
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet3",
+            "interface_flags": {}
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "acc02.11-et7",
+            "speed": null
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet4",
+            "interface_flags": {}
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "acc02.11-et8",
+            "speed": null
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet5",
+            "interface_flags": null
+         },
+         "expected_results": {
+            "used": false
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet6",
+            "interface_flags": null
+         },
+         "expected_results": {
+            "used": false
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet7",
+            "interface_flags": null
+         },
+         "expected_results": {
+            "used": false
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Ethernet8",
+            "interface_flags": null
+         },
+         "expected_results": {
+            "used": false
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Management0",
+            "interface_flags": {}
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "",
+            "speed": null
+         }
+      }
+   ]
+}

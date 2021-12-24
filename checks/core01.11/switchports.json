@@ -1,0 +1,89 @@
+{
+   "name": "switchports",
+   "device": "core01.11",
+   "exclusive": true,
+   "checks": [
+      {
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet1"
+         },
+         "expected_results": {
+            "switchport_mode": "trunk",
+            "native_vlan": {
+               "name": "native_vlan",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            },
+            "trunk_allowed_vlans": [
+               {
+                  "name": "WIFI-Employee",
+                  "vlan_id": 300,
+                  "description": "For Employee Wifi"
+               },
+               {
+                  "name": "WIFI-Visitor",
+                  "vlan_id": 301,
+                  "description": "For Visitor Wifi"
+               }
+            ]
+         }
+      },
+      {
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet2"
+         },
+         "expected_results": {
+            "switchport_mode": "trunk",
+            "native_vlan": {
+               "name": "native_vlan",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            },
+            "trunk_allowed_vlans": [
+               {
+                  "name": "WIFI-Employee",
+                  "vlan_id": 300,
+                  "description": "For Employee Wifi"
+               },
+               {
+                  "name": "WIFI-Visitor",
+                  "vlan_id": 301,
+                  "description": "For Visitor Wifi"
+               }
+            ]
+         }
+      },
+      {
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet3"
+         },
+         "expected_results": {
+            "switchport_mode": "trunk",
+            "native_vlan": {
+               "name": "native_vlan",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            },
+            "trunk_allowed_vlans": []
+         }
+      },
+      {
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet4"
+         },
+         "expected_results": {
+            "switchport_mode": "trunk",
+            "native_vlan": {
+               "name": "native_vlan",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            },
+            "trunk_allowed_vlans": []
+         }
+      }
+   ]
+}
