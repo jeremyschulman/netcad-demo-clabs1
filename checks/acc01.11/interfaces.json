@@ -96,7 +96,9 @@
          "check_type": null,
          "check_params": {
             "interface": "Management0",
-            "interface_flags": {}
+            "interface_flags": {
+               "is_mgmt_only": true
+            }
          },
          "expected_results": {
             "used": true,

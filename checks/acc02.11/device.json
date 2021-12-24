@@ -85,7 +85,9 @@
          "used": true,
          "port_type": null,
          "desc": "",
-         "profile_flags": {}
+         "profile_flags": {
+            "is_mgmt_only": true
+         }
       }
    }
 }

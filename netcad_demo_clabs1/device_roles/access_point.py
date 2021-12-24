@@ -44,6 +44,22 @@ class AccessPoint(AnyDevice, PseudoDevice):
     os_name = "meraki"
 
     def build_uplink(self, dev_iface: DeviceInterface):
+        """
+        This function creates the cabling relationship between the AP.wired0
+        interface and the provide device-interface.  The device-interface will
+        also be set to use the InterfaceL2 peering trunk profile so that any
+        VLANs defined on the AP will be automatically designed into the device.
+
+        For the purpose of this containerlab demo, the AP does not really exist,
+        and therefore we do not want to perform a cabling-LLDP check.  Therefore
+        we will mark the wired0 interface to prevent the check by the connected
+        device.
+
+        Parameters
+        ----------
+        dev_iface: DeviceInterface
+            The device interface where the AP will be attached.
+        """
         dev: AnyDevice = dev_iface.device
         iface_w0 = self.interfaces["wired0"]
         cable_id = f"uplink_{self.name}_{dev.name}"

@@ -38,7 +38,7 @@ from netcad.cli.netcad.cli_netcad_main import cli
 from netcad.cli.common_opts import opt_designs
 from netcad.cli.device_inventory import get_devices_from_designs
 from netcad.design_services import load_design
-from netcad.topology import TopologyServiceLike
+from netcad.topology import TopologyServiceLike, NoValidateCabling
 
 # -----------------------------------------------------------------------------
 # Private Imports
@@ -77,6 +77,7 @@ def clig_clabs_topology(designs: Tuple[str], template_file: Path):
     template_dir = str(template_file.parent)
     env = create_j2env(template_dir)
     template = env.get_template(template_file.name)
+    dummy_br_name = "br-dummy"
 
     for design_name in designs:
 
@@ -93,26 +94,33 @@ def clig_clabs_topology(designs: Tuple[str], template_file: Path):
         # together in the topology.
 
         cabled_ports = set()
+        fake_br_id = 0
 
         for cable_id, endpoints in topo_svc.cabling.cables.items():
             end_a, end_b = sorted(endpoints, key=lambda e: (e.device, e))
             cabled_ports.update((end_a, end_b))
 
-            cabling.append(
-                (
-                    f"{end_a.device.name}:{end_a.short_name.lower()}",
-                    f"{end_b.device.name}:{end_b.short_name.lower()}",
-                )
-            )
+            if end_b.cable_port_id is NoValidateCabling:
+                side_b = f"{dummy_br_name}:{fake_br_id}"
+                fake_br_id += 1
+            else:
+                side_b = f"{end_b.device.name}:{end_b.short_name.lower()}"
 
-        fake_br_id = 0
+            cabling.append((f"{end_a.device.name}:{end_a.short_name.lower()}", side_b))
 
         for dev_obj in design_obj.devices.values():
+            if dev_obj.is_pseudo:
+                continue
+
             for ifobj in dev_obj.interfaces.values():
                 if ifobj in cabled_ports:
                     continue
 
-                add_to = used_uncabled if not ifobj.used else unused_ports
+                if ifobj.used and ifobj.profile.is_mgmt_only:
+                    continue
+
+                add_to = used_uncabled if ifobj.used else unused_ports
+
                 add_item = (
                     f"{ifobj.device.name}:{ifobj.short_name.lower()}",
                     fake_br_id,
@@ -121,8 +129,11 @@ def clig_clabs_topology(designs: Tuple[str], template_file: Path):
                 add_to.append(add_item)
                 fake_br_id += 1
 
+        devices = [dev for dev in design_obj.devices.values() if not dev.is_pseudo]
+
         file_content = template.render(
             design=design_obj,
+            devices=devices,
             cabled_ports=cabling,
             uncabled_ports=used_uncabled,
             unused_ports=unused_ports,

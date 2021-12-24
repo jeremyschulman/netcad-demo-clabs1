@@ -21,8 +21,8 @@
 #  SOFTWARE.
 
 from pathlib import Path
-from netcad.device.l3_interfaces import InterfaceL3
+from netcad.device.l3_interfaces import InterfaceIsManagement
 
 
-class Management0(InterfaceL3):
+class Management0(InterfaceIsManagement):
     template = Path("interface_ma0.jinja2")
