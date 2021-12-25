@@ -19,12 +19,12 @@
                {
                   "name": "WIFI-Employee",
                   "vlan_id": 300,
-                  "description": "For Employee Wifi"
+                  "description": "For SSID Employee Wifi"
                },
                {
                   "name": "WIFI-Visitor",
                   "vlan_id": 301,
-                  "description": "For Visitor Wifi"
+                  "description": "For SSID Visitor Wifi"
                }
             ]
          }
@@ -45,12 +45,12 @@
                {
                   "name": "WIFI-Employee",
                   "vlan_id": 300,
-                  "description": "For Employee Wifi"
+                  "description": "For SSID Employee Wifi"
                },
                {
                   "name": "WIFI-Visitor",
                   "vlan_id": 301,
-                  "description": "For Visitor Wifi"
+                  "description": "For SSID Visitor Wifi"
                }
             ]
          }
@@ -71,12 +71,12 @@
                {
                   "name": "WIFI-Employee",
                   "vlan_id": 300,
-                  "description": "For Employee Wifi"
+                  "description": "For SSID Employee Wifi"
                },
                {
                   "name": "WIFI-Visitor",
                   "vlan_id": 301,
-                  "description": "For Visitor Wifi"
+                  "description": "For SSID Visitor Wifi"
                }
             ]
          }

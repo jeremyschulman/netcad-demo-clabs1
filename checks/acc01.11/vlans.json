@@ -9,12 +9,12 @@
             {
                "name": "WIFI-Employee",
                "vlan_id": 300,
-               "description": "For Employee Wifi"
+               "description": "For SSID Employee Wifi"
             },
             {
                "name": "WIFI-Visitor",
                "vlan_id": 301,
-               "description": "For Visitor Wifi"
+               "description": "For SSID Visitor Wifi"
             },
             {
                "name": "native_vlan",
@@ -34,7 +34,7 @@
             "vlan": {
                "name": "WIFI-Employee",
                "vlan_id": 300,
-               "description": "For Employee Wifi"
+               "description": "For SSID Employee Wifi"
             },
             "interfaces": [
                "Ethernet1",
@@ -52,7 +52,7 @@
             "vlan": {
                "name": "WIFI-Visitor",
                "vlan_id": 301,
-               "description": "For Visitor Wifi"
+               "description": "For SSID Visitor Wifi"
             },
             "interfaces": [
                "Ethernet1",

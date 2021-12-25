@@ -39,10 +39,14 @@ vlan_inband_mgmt = VlanProfile(
     vlan_id=911, name="Inband_MGMT", description="SVI used for inband management"
 )
 
+vlan_employee_desk = VlanProfile(
+    vlan_id=200, name="Employee Desk", description="For Employee Desk ports"
+)
+
 vlan_wifi_employee = VlanProfile(
-    vlan_id=300, name="WIFI-Employee", description="For Employee Wifi"
+    vlan_id=300, name="WIFI-Employee", description="For SSID Employee Wifi"
 )
 
 vlan_wifi_visitor = VlanProfile(
-    vlan_id=301, name="WIFI-Visitor", description="For Visitor Wifi"
+    vlan_id=301, name="WIFI-Visitor", description="For SSID Visitor Wifi"
 )

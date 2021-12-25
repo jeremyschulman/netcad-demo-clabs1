@@ -64,7 +64,7 @@ __all__ = ["create_std_design"]
 # -----------------------------------------------------------------------------
 
 
-def create_std_design(design: Design) -> Design:
+def create_std_design(design: Design):
 
     bld_id, fl_id = design.config["building"], design.config["floor"]
 
@@ -75,9 +75,26 @@ def create_std_design(design: Design) -> Design:
     sw2 = AccessSwitch(dev_id=2, bld_id=bld_id, fl_id=fl_id)
     ap1 = FloorAccessPoint(dev_id=1, bld_id=bld_id, fl_id=fl_id)
 
+    # save the nicknames of the devices in the design.config area so that these
+    # devices can be retrieved later without having to know the explicit
+    # hostname values.
+
+    design.config["nicknames"] = dev_nicknames = dict()
+
+    dev_nicknames["core01"] = core
+    dev_nicknames["acc01"] = sw1
+    dev_nicknames["acc02"] = sw2
+    dev_nicknames["ap01"] = ap1
+
+    # connect the devices together in the standard configuration; see device
+    # roles for sepcific details.  Connect the AP01 device to the first access
+    # switch on Ethernet1.
+
     sw1.build_uplink_to_core(core)
     sw2.build_uplink_to_core(core)
     ap1.build_uplink(sw1.interfaces["Ethernet1"])
+
+    # Add the devices to the desgin services for topology and vlans.
 
     all_devs = [core, sw1, sw2, ap1]
 
@@ -86,15 +103,14 @@ def create_std_design(design: Design) -> Design:
         VlansDesignService(devices=all_devs),
     ).update()
 
+    # assgin IP addresses to the management interfaces
+
     set_mgmt_ipaddr(core, ipam, 2, net_id=design.config["net_id"])
     set_mgmt_ipaddr(sw1, ipam, 3, net_id=design.config["net_id"])
     set_mgmt_ipaddr(sw2, ipam, 4, net_id=design.config["net_id"])
 
-    # create_vlan_interfaces(core, ipam, host_offset=1)
-
-    design.update()
-
-    return design
+    # assgin IP addresses to the SVIs on devices that need them.
+    create_vlan_interfaces(core, ipam, host_offset=1)
 
 
 def set_mgmt_ipaddr(device: AnyDevice, ipam: IPAM, host_offset: int, net_id: int):

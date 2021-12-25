@@ -7,6 +7,11 @@
       "expected_results": {
          "vlans": [
             {
+               "name": "Employee Desk",
+               "vlan_id": 200,
+               "description": "For Employee Desk ports"
+            },
+            {
                "name": "native_vlan",
                "vlan_id": 411,
                "description": "using different native vlan in demo"
@@ -15,6 +20,26 @@
       }
    },
    "checks": [
+      {
+         "check_type": "interfaces",
+         "check_params": {
+            "vlan_id": 200
+         },
+         "expected_results": {
+            "vlan": {
+               "name": "Employee Desk",
+               "vlan_id": 200,
+               "description": "For Employee Desk ports"
+            },
+            "interfaces": [
+               "Ethernet1",
+               "Ethernet2",
+               "Ethernet3",
+               "Ethernet7",
+               "Ethernet8"
+            ]
+         }
+      },
       {
          "check_type": "interfaces",
          "check_params": {

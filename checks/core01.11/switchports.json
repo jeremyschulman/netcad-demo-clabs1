@@ -19,12 +19,12 @@
                {
                   "name": "WIFI-Employee",
                   "vlan_id": 300,
-                  "description": "For Employee Wifi"
+                  "description": "For SSID Employee Wifi"
                },
                {
                   "name": "WIFI-Visitor",
                   "vlan_id": 301,
-                  "description": "For Visitor Wifi"
+                  "description": "For SSID Visitor Wifi"
                }
             ]
          }
@@ -45,12 +45,12 @@
                {
                   "name": "WIFI-Employee",
                   "vlan_id": 300,
-                  "description": "For Employee Wifi"
+                  "description": "For SSID Employee Wifi"
                },
                {
                   "name": "WIFI-Visitor",
                   "vlan_id": 301,
-                  "description": "For Visitor Wifi"
+                  "description": "For SSID Visitor Wifi"
                }
             ]
          }
@@ -67,7 +67,13 @@
                "vlan_id": 411,
                "description": "using different native vlan in demo"
             },
-            "trunk_allowed_vlans": []
+            "trunk_allowed_vlans": [
+               {
+                  "name": "Employee Desk",
+                  "vlan_id": 200,
+                  "description": "For Employee Desk ports"
+               }
+            ]
          }
       },
       {
@@ -82,7 +88,13 @@
                "vlan_id": 411,
                "description": "using different native vlan in demo"
             },
-            "trunk_allowed_vlans": []
+            "trunk_allowed_vlans": [
+               {
+                  "name": "Employee Desk",
+                  "vlan_id": 200,
+                  "description": "For Employee Desk ports"
+               }
+            ]
          }
       }
    ]

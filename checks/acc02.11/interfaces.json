@@ -7,30 +7,39 @@
          "check_type": null,
          "check_params": {
             "interface": "Ethernet1",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "Bob",
+            "speed": null
          }
       },
       {
          "check_type": null,
          "check_params": {
             "interface": "Ethernet2",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "Alice",
+            "speed": null
          }
       },
       {
          "check_type": null,
          "check_params": {
             "interface": "Ethernet3",
-            "interface_flags": null
+            "interface_flags": {}
          },
          "expected_results": {
-            "used": false
+            "used": true,
+            "oper_up": true,
+            "desc": "John",
+            "speed": null
          }
       },
       {

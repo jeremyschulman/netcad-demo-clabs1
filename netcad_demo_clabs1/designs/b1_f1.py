@@ -20,11 +20,66 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+
+# -----------------------------------------------------------------------------
+# Public Imports
+# -----------------------------------------------------------------------------
+
+from netcad.device import DeviceCatalog
 from netcad.design_services import Design
 
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
+
 from .std_design import create_std_design
+from ..profiles.access import DeskUser
+
+
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["create_design"]
+
+
+# -----------------------------------------------------------------------------
+#
+#                                 CODE BEGINS
+#
+# -----------------------------------------------------------------------------
 
 
 def create_design(design: Design) -> Design:
-    design = create_std_design(design)
+    """
+    This function is the "design entry-point" for the building-1, floor-1
+    network.
+
+    Parameters
+    ----------
+    design: Design
+        The design instance that needs to be filled in with the specifics of building-floor
+        design
+
+    Returns
+    -------
+    Design
+        The updated design instance.
+    """
+
+    create_std_design(design)
+    _add_desk_ports(design)
+
+    design.update()
+
     return design
+
+
+def _add_desk_ports(design: Design):
+    dev_nn: DeviceCatalog = design.config["nicknames"]
+
+    sw2 = dev_nn["acc02"]
+
+    sw2.interfaces["Ethernet1"].profile = DeskUser(desc="Bob")
+    sw2.interfaces["Ethernet2"].profile = DeskUser(desc="Alice")
+    sw2.interfaces["Ethernet3"].profile = DeskUser(desc="John")
