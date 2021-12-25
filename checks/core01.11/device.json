@@ -88,6 +88,26 @@
          "profile_flags": {
             "is_mgmt_only": true
          }
+      },
+      "Vlan300": {
+         "name": "Vlan300",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "WIFI-Employee",
+         "profile_flags": {
+            "is_virtual": true
+         }
+      },
+      "Vlan301": {
+         "name": "Vlan301",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "WIFI-Visitor",
+         "profile_flags": {
+            "is_virtual": true
+         }
       }
    }
 }

@@ -109,6 +109,36 @@
             "desc": "",
             "speed": null
          }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Vlan300",
+            "interface_flags": {
+               "is_virtual": true
+            }
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "WIFI-Employee",
+            "speed": null
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "interface": "Vlan301",
+            "interface_flags": {
+               "is_virtual": true
+            }
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "WIFI-Visitor",
+            "speed": null
+         }
       }
    ]
 }

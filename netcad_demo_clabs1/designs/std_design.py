@@ -20,13 +20,28 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# =============================================================================
+# This file contains the "standard floor design" aspects.  Each building-floor
+# will be designed with the following:
+#
+#   * one core switch
+#   * two access swiches
+#   * one access-point
+#
+# Each access switch will be connected via two ethernet ports to the core. The
+# access-point will be connected to the first access switch.  For specific
+# cabling design, refer to the `device_roles` module for each.
+#
+# =============================================================================
+
+
 # -----------------------------------------------------------------------------
 # System Imports
 # -----------------------------------------------------------------------------
 
 from pathlib import Path
 from itertools import islice
-from ipaddress import IPv4Interface
+from ipaddress import IPv4Interface, IPv4Network
 
 # -----------------------------------------------------------------------------
 # Public Imports
@@ -65,10 +80,26 @@ __all__ = ["create_std_design"]
 
 
 def create_std_design(design: Design):
+    """
+    Create the standard building-floor design pattern.
+
+    Parameters
+    ----------
+    design: Design
+        The design instance that will be build
+    """
+
+    # The building and floor ID values are taken from the `netcad.toml`
+    # configuration file.
 
     bld_id, fl_id = design.config["building"], design.config["floor"]
 
-    ipam = create_site_ipam(design, bld_id=bld_id, flr_id=fl_id)
+    # create the IP Address Management instance that stores all of the subnets
+    # used in the design.
+
+    ipam = create_site_ipam(design)
+
+    # create the standard set of four devices per building-floor
 
     core = CoreSwitch(dev_id=1, bld_id=bld_id, fl_id=fl_id)
     sw1 = AccessSwitch(dev_id=1, bld_id=bld_id, fl_id=fl_id)
@@ -105,15 +136,53 @@ def create_std_design(design: Design):
 
     # assgin IP addresses to the management interfaces
 
-    set_mgmt_ipaddr(core, ipam, 2, net_id=design.config["net_id"])
-    set_mgmt_ipaddr(sw1, ipam, 3, net_id=design.config["net_id"])
-    set_mgmt_ipaddr(sw2, ipam, 4, net_id=design.config["net_id"])
+    net_id = design.config["net_id"]
+    mgmt_subnet = get_mgmt_subnet(net_id=net_id, ipam=ipam)
 
-    # assgin IP addresses to the SVIs on devices that need them.
-    create_vlan_interfaces(core, ipam, host_offset=1)
+    # Note the .1 is assigned to the containerlab system host interface
+
+    set_mgmt_ipaddr(core, mgmt_subnet, host_offset=2)
+    set_mgmt_ipaddr(sw1, mgmt_subnet, host_offset=3)
+    set_mgmt_ipaddr(sw2, mgmt_subnet, host_offset=4)
+
+    set_vlan_interfaces(design)
+
+    design.update()
 
 
-def set_mgmt_ipaddr(device: AnyDevice, ipam: IPAM, host_offset: int, net_id: int):
+def set_vlan_interfaces(design: Design):
+    """
+    Assgin IP addresses to the SVIs on devices that need them.
+    """
+    ipam = design.ipams[0]
+    dev_nn = design.config["nicknames"]
+
+    create_vlan_interfaces(dev_nn["core01"], ipam=ipam, host_offset=1)
+
+
+def get_mgmt_subnet(net_id: int, ipam: IPAM) -> IPv4Network:
+    """
+    This function is used to determine the management subnet for this design.
+    The OOB network is carved up into /28 chunks per "network ID"; i.e each
+    building-floor has a designated network ID value, and that value determines
+    which /28 chunk to use.  This approach allows us to use the single
+    containerlab / docker network that is a /24.
+
+    Parameters
+    ----------
+    net_id: int
+        The network ID value as defined in the `netcad.toml` configuration file
+        for this specific design network.
+
+    ipam: IPAM
+        The IPAM instance that stores the overall OOB network instance.
+
+    Returns
+    -------
+    IPv4Network
+        The network instance that will be used as the base network for assigning
+        the Management0 interface IP addresss.
+    """
 
     oob_subnet = ipam["OOB"]
 
@@ -124,11 +193,30 @@ def set_mgmt_ipaddr(device: AnyDevice, ipam: IPAM, host_offset: int, net_id: int
 
     oob_pf28s = oob_subnet.ip_network.subnets(new_prefix=28)
     design_p28 = next(islice(oob_pf28s, net_id - 1, None))
-    host_ip = design_p28.network_address + host_offset
+    return design_p28
 
-    # the container lab needs the IP address to be a /24 unless I want to carve
-    # out per topology subnets, which I don't.  So forcing the prefix length to
-    # 24 so that the ipaddr checks pass.
+
+def set_mgmt_ipaddr(device: AnyDevice, mgmt_subnet: IPv4Network, host_offset: int):
+    """
+    This function defines the Management0 interface on the device.  The IP
+    address is the mgmt-subnet base network address + the host-offset.  The
+    Management0 is set to use a /24 prefix, artifically, so that it will conform
+    to the use of the docker-network that is a /24 for all host manaegment.
+
+    Parameters
+    ----------
+    device: AnyDevice
+        The device that is begin assigned its Management0
+
+    mgmt_subnet: IPv4Network
+        The IPv4 network instance for this network design management subnet.
+
+    host_offset: int
+        The device IP offset value that is added to the subnet base to compute
+        the specific IP interface address.
+    """
+
+    host_ip = mgmt_subnet.network_address + host_offset
 
     with device.interfaces["Management0"] as ma0:
         ma0_if_ipaddr = IPv4Interface((host_ip, 24))
@@ -136,16 +224,43 @@ def set_mgmt_ipaddr(device: AnyDevice, ipam: IPAM, host_offset: int, net_id: int
         device.primary_ip = ma0_if_ipaddr.ip
 
 
-def create_vlan_interfaces(device: CoreSwitch, ipam: IPAM, host_offset: int):
+def create_vlan_interfaces(device: AnyDevice, ipam: IPAM, host_offset: int):
+    """
+    This function is used to create Vlan Interfaces for each VLAN defined on the
+    device.  For example, if a device has 4 VLANs defined, and those VLANs have assocaited
+    IPAM networks, then this function will create SVIs for each of those four VLANs.
+
+    Parameters
+    ----------
+    device: AnyDevice
+        The device that is being designed.
+
+    ipam: IPAM
+        The IPAM instance that holds all of the subnets defined in the design.
+        Some of these will have "names" that are VlanProfile instances.  Each of
+        these is then used to design in the SVI interface.
+
+    host_offset: int
+        This value is used to add to the base of each of the VLAN associated
+        networks to compute the device specific SVI interface IP address.
+
+    """
 
     vlan_svc: DeviceVlanDesignServiceLike = device.services["vlans"]
 
     # obtain the list of all vlans used by this device in the design
+
     dev_vlans = vlan_svc.all_vlans()
+
+    # find all of the IPAM subnets that are VLAN associated, and whose VLANs are
+    # begin used on this device.
 
     subnets_used = [
         (vlan, subnet) for vlan, subnet in ipam.items() if vlan in dev_vlans
     ]
+
+    # for each VLAN subnet that should be on this device create a "Vlan<n>"
+    # interface and calcualte+assign the IP interface address.
 
     vlan: VlanProfileLike
     for vlan, subnet in subnets_used:

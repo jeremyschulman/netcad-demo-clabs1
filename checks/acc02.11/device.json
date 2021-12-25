@@ -17,26 +17,26 @@
    "interfaces": {
       "Ethernet1": {
          "name": "Ethernet1",
-         "enabled": true,
-         "used": true,
-         "port_type": "EbraTestPhyPort",
-         "desc": "Bob",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
          "profile_flags": {}
       },
       "Ethernet2": {
          "name": "Ethernet2",
-         "enabled": true,
-         "used": true,
-         "port_type": "EbraTestPhyPort",
-         "desc": "Alice",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
          "profile_flags": {}
       },
       "Ethernet3": {
          "name": "Ethernet3",
-         "enabled": true,
-         "used": true,
-         "port_type": "EbraTestPhyPort",
-         "desc": "John",
+         "enabled": false,
+         "used": false,
+         "port_type": null,
+         "desc": null,
          "profile_flags": {}
       },
       "Ethernet4": {

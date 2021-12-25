@@ -35,7 +35,7 @@ from netcad.design_services import Design
 # Private Imports
 # -----------------------------------------------------------------------------
 
-from .std_design import create_std_design
+from .std_design import create_std_design, set_vlan_interfaces
 from ..profiles.access import DeskUser
 
 
@@ -72,9 +72,9 @@ def create_design(design: Design) -> Design:
     """
 
     create_std_design(design)
-    _add_desk_ports(design)
 
-    design.update()
+    # _add_desk_ports(design)
+    # set_vlan_interfaces(design)
 
     return design
 
@@ -93,3 +93,5 @@ def _add_desk_ports(design: Design):
     sw2.interfaces["Ethernet1"].profile = DeskUser(desc="Bob")
     sw2.interfaces["Ethernet2"].profile = DeskUser(desc="Alice")
     sw2.interfaces["Ethernet3"].profile = DeskUser(desc="John")
+
+    design.update()

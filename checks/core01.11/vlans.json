@@ -7,11 +7,6 @@
       "expected_results": {
          "vlans": [
             {
-               "name": "Employee Desk",
-               "vlan_id": 200,
-               "description": "For Employee Desk ports"
-            },
-            {
                "name": "WIFI-Employee",
                "vlan_id": 300,
                "description": "For SSID Employee Wifi"
@@ -33,23 +28,6 @@
       {
          "check_type": "interfaces",
          "check_params": {
-            "vlan_id": 200
-         },
-         "expected_results": {
-            "vlan": {
-               "name": "Employee Desk",
-               "vlan_id": 200,
-               "description": "For Employee Desk ports"
-            },
-            "interfaces": [
-               "Ethernet3",
-               "Ethernet4"
-            ]
-         }
-      },
-      {
-         "check_type": "interfaces",
-         "check_params": {
             "vlan_id": 300
          },
          "expected_results": {
@@ -60,7 +38,8 @@
             },
             "interfaces": [
                "Ethernet1",
-               "Ethernet2"
+               "Ethernet2",
+               "Vlan300"
             ]
          }
       },
@@ -77,7 +56,8 @@
             },
             "interfaces": [
                "Ethernet1",
-               "Ethernet2"
+               "Ethernet2",
+               "Vlan301"
             ]
          }
       },

@@ -67,13 +67,7 @@
                "vlan_id": 411,
                "description": "using different native vlan in demo"
             },
-            "trunk_allowed_vlans": [
-               {
-                  "name": "Employee Desk",
-                  "vlan_id": 200,
-                  "description": "For Employee Desk ports"
-               }
-            ]
+            "trunk_allowed_vlans": []
          }
       },
       {
@@ -88,13 +82,7 @@
                "vlan_id": 411,
                "description": "using different native vlan in demo"
             },
-            "trunk_allowed_vlans": [
-               {
-                  "name": "Employee Desk",
-                  "vlan_id": 200,
-                  "description": "For Employee Desk ports"
-               }
-            ]
+            "trunk_allowed_vlans": []
          }
       }
    ]
