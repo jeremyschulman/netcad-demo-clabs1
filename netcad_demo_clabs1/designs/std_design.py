@@ -69,7 +69,7 @@ from ..ipam import create_site_ipam, IPAM
 # Exports
 # -----------------------------------------------------------------------------
 
-__all__ = ["create_std_design"]
+__all__ = ["create_std_design", "set_vlan_interfaces"]
 
 
 # -----------------------------------------------------------------------------

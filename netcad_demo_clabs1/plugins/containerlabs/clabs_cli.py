@@ -116,7 +116,9 @@ def clig_clabs_topology(designs: Tuple[str], template_file: Path):
                 if ifobj in cabled_ports:
                     continue
 
-                if ifobj.used and ifobj.profile.is_mgmt_only:
+                if ifobj.used and (
+                    ifobj.profile.is_mgmt_only or ifobj.profile.is_virtual
+                ):
                     continue
 
                 add_to = used_uncabled if ifobj.used else unused_ports
