@@ -46,6 +46,10 @@ __all__ = ["CoreSwitch"]
 
 
 class CoreSwitch(AnyContainerEosDevice):
+    """
+    Baseclass for all core-switch device-role devices in the design.
+    """
+
     sort_key = (0, 0)
     device_base_name = "core"
     template = Path("core_switch.jinja2")

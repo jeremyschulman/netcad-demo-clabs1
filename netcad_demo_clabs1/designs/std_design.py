@@ -92,7 +92,7 @@ def create_std_design(design: Design):
     # The building and floor ID values are taken from the `netcad.toml`
     # configuration file.
 
-    bld_id, fl_id = design.config["building"], design.config["floor"]
+    bld_id, flr_id = design.config["building"], design.config["floor"]
 
     # create the IP Address Management instance that stores all of the subnets
     # used in the design.
@@ -101,10 +101,10 @@ def create_std_design(design: Design):
 
     # create the standard set of four devices per building-floor
 
-    core = CoreSwitch(dev_id=1, bld_id=bld_id, fl_id=fl_id)
-    sw1 = AccessSwitch(dev_id=1, bld_id=bld_id, fl_id=fl_id)
-    sw2 = AccessSwitch(dev_id=2, bld_id=bld_id, fl_id=fl_id)
-    ap1 = FloorAccessPoint(dev_id=1, bld_id=bld_id, fl_id=fl_id)
+    core = CoreSwitch(dev_id=1, bld_id=bld_id, flr_id=flr_id)
+    sw1 = AccessSwitch(dev_id=1, bld_id=bld_id, flr_id=flr_id)
+    sw2 = AccessSwitch(dev_id=2, bld_id=bld_id, flr_id=flr_id)
+    ap1 = FloorAccessPoint(dev_id=1, bld_id=bld_id, flr_id=flr_id)
 
     # save the nicknames of the devices in the design.config area so that these
     # devices can be retrieved later without having to know the explicit
