@@ -20,15 +20,43 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# =============================================================================
+# This file contains the Interface Profiles for "trunk" ports used in the
+# designs.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# System Imports
+# -----------------------------------------------------------------------------
+
 from pathlib import Path
+
+# -----------------------------------------------------------------------------
+# System Imports
+# -----------------------------------------------------------------------------
 
 from netcad.device.l2_interfaces import InterfaceL2Trunk
 from netcad.device import PeerInterfaceId
 from netcad.vlan import VlansFromPeer, VlansAll
 
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
 
 from netcad_demo_clabs1.vlans import vlan_native
 from netcad_demo_clabs1.profiles.phy_port import port_ebra
+
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["PeeringTrunk", "UplinkTrunk"]
+
+# -----------------------------------------------------------------------------
+#
+#                                 CODE BEGINS
+#
+# -----------------------------------------------------------------------------
 
 
 class PeeringTrunk(InterfaceL2Trunk):

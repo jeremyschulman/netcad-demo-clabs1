@@ -20,6 +20,10 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# -----------------------------------------------------------------------------
+# Public Imports
+# -----------------------------------------------------------------------------
+
 from netcad.phy_port import (
     PhyPortProfile,
     PortCable,
@@ -27,8 +31,22 @@ from netcad.phy_port import (
     CableTerminationType,
 )
 
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["port_ebra"]
+
+# -----------------------------------------------------------------------------
+#
+#                                 CODE BEGINS
+#
+# -----------------------------------------------------------------------------
+
 
 port_ebra = PhyPortProfile(
+    # This port_profile is used to define the cEOS virtual interface type that
+    # is reported via the CLI/API as "EbraTestPhyPort"
     name="EbraTestPhyPort",
     cabling=PortCable(
         media=CableMediaType.virtual, termination=CableTerminationType.virtual
