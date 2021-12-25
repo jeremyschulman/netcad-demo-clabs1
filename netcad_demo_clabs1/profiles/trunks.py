@@ -32,7 +32,7 @@
 from pathlib import Path
 
 # -----------------------------------------------------------------------------
-# System Imports
+# Public Imports
 # -----------------------------------------------------------------------------
 
 from netcad.device.l2_interfaces import InterfaceL2Trunk

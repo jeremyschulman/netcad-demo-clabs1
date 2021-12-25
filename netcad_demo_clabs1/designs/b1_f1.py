@@ -20,6 +20,9 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# =============================================================================
+# This file contains the design for the "building 1, floor 1" network.
+# =============================================================================
 
 # -----------------------------------------------------------------------------
 # Public Imports
@@ -53,13 +56,14 @@ __all__ = ["create_design"]
 def create_design(design: Design) -> Design:
     """
     This function is the "design entry-point" for the building-1, floor-1
-    network.
+    network.  The name of this function **MUST** be `create_desgin` as this name
+    is required so that the netcad tool can process it.
 
     Parameters
     ----------
     design: Design
-        The design instance that needs to be filled in with the specifics of building-floor
-        design
+        The design instance that needs to be filled in with the specifics of
+        building-floor design
 
     Returns
     -------
@@ -76,6 +80,12 @@ def create_design(design: Design) -> Design:
 
 
 def _add_desk_ports(design: Design):
+    """
+    This function demonstrates how a design can be augmented to include
+    variances from the "standard".  In this example we are adding a few desk
+    users to the 2nd access switch.
+    """
+
     dev_nn: DeviceCatalog = design.config["nicknames"]
 
     sw2 = dev_nn["acc02"]

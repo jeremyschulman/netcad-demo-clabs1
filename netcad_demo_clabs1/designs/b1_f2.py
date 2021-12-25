@@ -20,11 +20,55 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# =============================================================================
+# This file contains the design for the "building 1, floor 2" network.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Public Imports
+# -----------------------------------------------------------------------------
+
 from netcad.design_services import Design
+
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
 
 from .std_design import create_std_design
 
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["create_design"]
+
+
+# -----------------------------------------------------------------------------
+#
+#                                 CODE BEGINS
+#
+# -----------------------------------------------------------------------------
+
 
 def create_design(design: Design) -> Design:
+    """
+    This function is the "design entry-point" for the building-1, floor-2
+    network.  The name of this function **MUST** be `create_desgin` as this name
+    is required so that the netcad tool can process it.
+
+    Notes: Just the standard design here, so folks can experiment.
+
+    Parameters
+    ----------
+    design: Design
+        The design instance that needs to be filled in with the specifics of
+        building-floor design
+
+    Returns
+    -------
+    Design
+        The updated design instance.
+    """
+
     design = create_std_design(design)
     return design
