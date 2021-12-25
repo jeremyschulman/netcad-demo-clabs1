@@ -20,14 +20,26 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# -----------------------------------------------------------------------------
+# Public Imports
+# -----------------------------------------------------------------------------
+
 from netcad.device import PseudoDevice, DeviceInterface
 from netcad.device.l2_interfaces import InterfaceL2Trunk
 from netcad.topology import NoValidateCabling
+
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
 
 from ..profiles.trunks import PeeringTrunk
 from ..profiles.phy_port import port_ebra
 from .any_device import AnyDevice
 from .. import vlans
+
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
 
 __all__ = ["FloorAccessPoint"]
 
@@ -38,6 +50,18 @@ __all__ = ["FloorAccessPoint"]
 
 
 class AccessPoint(AnyDevice, PseudoDevice):
+    """
+    The baseclass for all Access-Point devices in the design.  This device is
+    designated a PseudoDevice since the containerlabs system will not be
+    provisioned wih an access-point device.
+
+    Notes
+    -----
+    A pseudo-device is used for design purposes so that design elements and
+    their relationship can be used; but the device does not exist and therefore
+    the `netcad/netcam` tools will not attempt to "do anything" to them.
+    """
+
     device_base_name = "ap"
     sort_key = (2, 0)
     product_model = "MR84"
@@ -60,12 +84,16 @@ class AccessPoint(AnyDevice, PseudoDevice):
         dev_iface: DeviceInterface
             The device interface where the AP will be attached.
         """
-        dev: AnyDevice = dev_iface.device
+        dev = dev_iface.device
         iface_w0 = self.interfaces["wired0"]
         cable_id = f"uplink_{self.name}_{dev.name}"
         dev_iface.cable_id = cable_id
         dev_iface.profile = PeeringTrunk()
         iface_w0.cable_id = cable_id
+
+        # mark the interface so that the connecting device does not attempt to
+        # perform a cable neighbor LLDP check.
+
         iface_w0.cable_port_id = NoValidateCabling
 
 
@@ -75,10 +103,28 @@ class AccessPoint(AnyDevice, PseudoDevice):
 
 
 class FloorAccessPoint(AccessPoint):
+    """
+    Define an access-point to represent a 'standard access point' used in the
+    building-floor design.  These access points will host two SSIDs, one for
+    Employee use, and another for Visitor use.
+    """
+
     pass
 
 
 class FloorAPTrunkPort(InterfaceL2Trunk):
+    """
+    Define the AP wired interface trunk port type so that the desired VLANs are
+    defined.
+
+    Notes
+    -----
+    The purpose of this is to allow the Designer to use the AP device as the
+    "source of truth" for VLANs that need to be on the trunk port on the
+    connected device.  There are no APs in the actual demonstration
+    containerlab; nor are there any SSIDs ;-)
+    """
+
     port_profile = port_ebra
     native_vlan = vlans.vlan_native
     vlans = [vlans.vlan_wifi_employee, vlans.vlan_wifi_visitor]

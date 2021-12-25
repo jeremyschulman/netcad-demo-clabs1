@@ -36,11 +36,37 @@ from .core_switch import CoreSwitch
 
 
 class AccessSwitch(AnyContainerEosDevice):
+    """
+    Define the baseclass for all access-switch devices.  The general purpose of
+    the access switch will to cable interfaces Ethernet7 and Ethernet8 to a
+    core-switch. See the `build_uplink_to_core` for details.
+    """
+
     sort_key = (1, 0)
     device_base_name = "acc"
     template = Path("access_switch.jinja2")
 
     def build_uplink_to_core(self, core: CoreSwitch):
+        """
+        This method is used to declare the cabling between this access switch
+        and the designated core switch.  The access switch will always use eth7
+        and eth8.  The designated core swtich interfaces are calculated baased
+        on the access-switch "device Id".  The first access switch (dev_id=1)
+        will use the first two ports on the core switch, the second access
+        switch (dev_id=2) will use the next two (eth3, eth4), and so on.
+
+        Notes
+        -----
+        The design use of an 8-port core swtich allows for at most 4 access
+        switches.  There is no enforcement of this fact in the design.  TODO:
+        add such enforcement.
+
+        Parameters
+        ----------
+        core: AnyContainerEosDevice
+            The core switch where this access switch will be connected.
+
+        """
         if_defs = self.interfaces
 
         # there are two uplink interfaces from the access device to the core
@@ -56,6 +82,9 @@ class AccessSwitch(AnyContainerEosDevice):
         base_cable_id = f"uplink_{self.name}_{core.name}"
 
         with if_defs["Ethernet7"] as eth7, if_defs["Ethernet8"] as eth8:
+
+            # cable the access-swtich eth7 to the first core interface
+
             eth7.profile = UplinkTrunk()
             eth7.cable_id = base_cable_id + "_1"
 
@@ -63,8 +92,11 @@ class AccessSwitch(AnyContainerEosDevice):
                 core_intf.profile = PeeringTrunk()
                 core_intf.cable_id = eth7.cable_id
 
+            # cable the access-swtich eth8 to the second core interface
+
             eth8.profile = UplinkTrunk()
             eth8.cable_id = base_cable_id + "_2"
+
             with core_if_defs[f"Ethernet{core_intf_baseport_id + 1}"] as uplink:
                 uplink.profile = PeeringTrunk()
                 uplink.cable_id = eth8.cable_id
