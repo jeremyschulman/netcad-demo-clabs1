@@ -1,0 +1,34 @@
+{
+   "name": "ipaddrs",
+   "device": "core01.11",
+   "exclusive": true,
+   "checks": [
+      {
+         "check_type": null,
+         "check_params": {
+            "if_name": "Management0"
+         },
+         "expected_results": {
+            "if_ipaddr": "172.20.20.2/24"
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "if_name": "Vlan300"
+         },
+         "expected_results": {
+            "if_ipaddr": "10.100.1.1/24"
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "if_name": "Vlan301"
+         },
+         "expected_results": {
+            "if_ipaddr": "10.200.1.1/24"
+         }
+      }
+   ]
+}

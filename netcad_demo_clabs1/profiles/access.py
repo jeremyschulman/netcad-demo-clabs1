@@ -20,21 +20,73 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# =============================================================================
+# This file contains the Interface Profiles for "access" ports used in the
+# designs.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# System Imports
+# -----------------------------------------------------------------------------
+
 from pathlib import Path
+
+# -----------------------------------------------------------------------------
+# Public Imports
+# -----------------------------------------------------------------------------
 
 from netcad.device.l2_interfaces import InterfaceL2Access
 
-from netcad_demo_clabs1.vlans import vlan_printers, vlan_phones
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
+
+from netcad_demo_clabs1.vlans import vlan_printers, vlan_phones, vlan_employee_desk
 from netcad_demo_clabs1.profiles.phy_port import port_ebra
+
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["Printer", "DeskUser", "Phone"]
+
+
+# -----------------------------------------------------------------------------
+#
+#                                 CODE BEGINS
+#
+# -----------------------------------------------------------------------------
 
 
 class Printer(InterfaceL2Access):
+    """
+    Interface is connected to a printer device.  The Designer is expected to
+    assign the `desc` property with the specific printer name / identifier.
+    """
+
     port_profile = port_ebra
     vlan = vlan_printers
     template = Path("interface_access.jinja2")
 
 
 class Phone(InterfaceL2Access):
+    """
+    Interface is connected to a VOIP Phone.  The Designer is expected to assign
+    the `desc` property with the specific phone number / identifier.
+    """
+
     port_profile = port_ebra
     vlan = vlan_phones
+    template = Path("interface_access.jinja2")
+
+
+class DeskUser(InterfaceL2Access):
+    """
+    Interface is connected to an Employee Desk walljack.  The Designer is
+    expected to assign the `desc` property with the specific user-name or
+    walljack / identifier.
+    """
+
+    port_profile = port_ebra
+    vlan = vlan_employee_desk
     template = Path("interface_access.jinja2")

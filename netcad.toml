@@ -43,7 +43,7 @@
 
 [[netcad.plugins]]
     name = "ContainerLabs"
-    package = "netcad_demo_clabs1.containerlabs"
+    package = "netcad_demo_clabs1.plugins.containerlabs"
 
 # -----------------------------------------------------------------------------
 #

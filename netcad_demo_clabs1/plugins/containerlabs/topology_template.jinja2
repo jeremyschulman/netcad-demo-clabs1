@@ -12,11 +12,11 @@ topology:
     br-dummy:
       kind: bridge
 
-    {% for device_name, device in design.devices.items() %}
-    {{ device_name}}:
+    {% for device in devices %}
+    {{ device.name}}:
       kind: ceos
       image: ceos:latest
-      startup-config: {{ device_name }}.cfg
+      startup-config: {{ device.name }}.cfg
       mgmt_ipv4: {{ device.primary_ip }}
     {% endfor %}
 

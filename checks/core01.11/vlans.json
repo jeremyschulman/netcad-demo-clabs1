@@ -1,0 +1,79 @@
+{
+   "name": "vlans",
+   "device": "core01.11",
+   "exclusive": {
+      "check_type": "exclusive_list",
+      "check_params": null,
+      "expected_results": {
+         "vlans": [
+            {
+               "name": "WIFI-Employee",
+               "vlan_id": 300,
+               "description": "For SSID Employee Wifi"
+            },
+            {
+               "name": "WIFI-Visitor",
+               "vlan_id": 301,
+               "description": "For SSID Visitor Wifi"
+            },
+            {
+               "name": "native_vlan",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            }
+         ]
+      }
+   },
+   "checks": [
+      {
+         "check_type": "interfaces",
+         "check_params": {
+            "vlan_id": 300
+         },
+         "expected_results": {
+            "vlan": {
+               "name": "WIFI-Employee",
+               "vlan_id": 300,
+               "description": "For SSID Employee Wifi"
+            },
+            "interfaces": [
+               "Ethernet1",
+               "Ethernet2",
+               "Vlan300"
+            ]
+         }
+      },
+      {
+         "check_type": "interfaces",
+         "check_params": {
+            "vlan_id": 301
+         },
+         "expected_results": {
+            "vlan": {
+               "name": "WIFI-Visitor",
+               "vlan_id": 301,
+               "description": "For SSID Visitor Wifi"
+            },
+            "interfaces": [
+               "Ethernet1",
+               "Ethernet2",
+               "Vlan301"
+            ]
+         }
+      },
+      {
+         "check_type": "interfaces",
+         "check_params": {
+            "vlan_id": 411
+         },
+         "expected_results": {
+            "vlan": {
+               "name": "native_vlan",
+               "vlan_id": 411,
+               "description": "using different native vlan in demo"
+            },
+            "interfaces": []
+         }
+      }
+   ]
+}

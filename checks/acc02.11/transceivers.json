@@ -1,0 +1,6 @@
+{
+   "name": "transceivers",
+   "device": "acc02.11",
+   "exclusive": true,
+   "checks": []
+}

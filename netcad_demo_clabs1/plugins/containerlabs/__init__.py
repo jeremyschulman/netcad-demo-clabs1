@@ -28,4 +28,5 @@ plugin_description = "containerlab features"
 
 
 def plugin_init(config: dict):
+    """init containerlab plugin"""
     pass

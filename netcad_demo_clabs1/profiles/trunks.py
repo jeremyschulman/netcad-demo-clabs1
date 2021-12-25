@@ -20,18 +20,46 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
+# =============================================================================
+# This file contains the Interface Profiles for "trunk" ports used in the
+# designs.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# System Imports
+# -----------------------------------------------------------------------------
+
 from pathlib import Path
+
+# -----------------------------------------------------------------------------
+# Public Imports
+# -----------------------------------------------------------------------------
 
 from netcad.device.l2_interfaces import InterfaceL2Trunk
 from netcad.device import PeerInterfaceId
 from netcad.vlan import VlansFromPeer, VlansAll
 
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
 
 from netcad_demo_clabs1.vlans import vlan_native
 from netcad_demo_clabs1.profiles.phy_port import port_ebra
 
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
 
-class CorePeeringTrunk(InterfaceL2Trunk):
+__all__ = ["PeeringTrunk", "UplinkTrunk"]
+
+# -----------------------------------------------------------------------------
+#
+#                                 CODE BEGINS
+#
+# -----------------------------------------------------------------------------
+
+
+class PeeringTrunk(InterfaceL2Trunk):
     """
     Used by core switches, automatically uses the same VLANs as defined on the
     connected access switches.
@@ -44,7 +72,7 @@ class CorePeeringTrunk(InterfaceL2Trunk):
     template = Path("interface_trunk.jinja2")
 
 
-class AccToCoreUplink(InterfaceL2Trunk):
+class UplinkTrunk(InterfaceL2Trunk):
     """
     Used by access switches, automatically uses all VLANs that are defined on
     the local interface ports.

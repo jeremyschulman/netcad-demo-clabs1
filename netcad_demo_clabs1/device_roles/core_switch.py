@@ -20,8 +20,36 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-from netcad_demo_clabs1 import __version__
+# -----------------------------------------------------------------------------
+# System Imports
+# -----------------------------------------------------------------------------
+
+from pathlib import Path
+
+# -----------------------------------------------------------------------------
+# Private Imports
+# -----------------------------------------------------------------------------
+
+from .any_device import AnyContainerEosDevice
+
+# -----------------------------------------------------------------------------
+# Exports
+# -----------------------------------------------------------------------------
+
+__all__ = ["CoreSwitch"]
+
+# -----------------------------------------------------------------------------
+#
+#                               CODE BEGINS
+#
+# -----------------------------------------------------------------------------
 
 
-def test_version():
-    assert __version__ == "0.1.0"
+class CoreSwitch(AnyContainerEosDevice):
+    """
+    Baseclass for all core-switch device-role devices in the design.
+    """
+
+    sort_key = (0, 0)
+    device_base_name = "core"
+    template = Path("core_switch.jinja2")
