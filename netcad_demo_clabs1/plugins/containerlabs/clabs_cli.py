@@ -26,17 +26,17 @@
 
 from typing import Tuple
 from pathlib import Path
-import re
 
 # -----------------------------------------------------------------------------
 # Public Imports
 # -----------------------------------------------------------------------------
 
 import click
+import jinja2
 
+from netcad.design_services import Design
 from netcad.cli.netcad.cli_netcad_main import cli
 from netcad.cli.common_opts import opt_designs
-from netcad.cli.device_inventory import get_devices_from_designs
 from netcad.design_services import load_design
 from netcad.topology import TopologyServiceLike, NoValidateCabling
 
@@ -69,7 +69,21 @@ def clig_clabs():
     default=DEFAULT_TOPOLOGY_TEMPLATE,
     type=click.Path(path_type=Path, resolve_path=True, exists=True),
 )
-def clig_clabs_topology(designs: Tuple[str], template_file: Path):
+@click.option(
+    "--save-dir",
+    "save_dir",
+    type=click.Path(
+        path_type=Path, resolve_path=True, exists=True, dir_okay=True, file_okay=False
+    ),
+)
+@click.option(
+    "--dummy-bridge",
+    help="name of dummy bridge to force creation of device interfaces",
+    default="br-dummy",
+)
+def clig_clabs_topology(
+    designs: Tuple[str], template_file: Path, save_dir: Path, dummy_bridge: str
+):
     """
     Create containerlab topology file.
     """
@@ -77,166 +91,76 @@ def clig_clabs_topology(designs: Tuple[str], template_file: Path):
     template_dir = str(template_file.parent)
     env = create_j2env(template_dir)
     template = env.get_template(template_file.name)
-    dummy_br_name = "br-dummy"
 
     for design_name in designs:
-
-        cabling = []
-        used_uncabled = []
-        unused_ports = []
-
         design_obj = load_design(design_name)
+        topo_content = render_topology_content(template, design_obj, dummy_bridge)
 
-        # TODO: should not use hardcoded 'topology', but for demo ok.
-        topo_svc: TopologyServiceLike = design_obj.services["topology"]
+        if save_dir:
+            topo_file = save_dir / (design_obj.name + ".clab.yaml")
+            with topo_file.open("w+") as ofile:
+                print(f"SAVE: {ofile.name}")
+                ofile.write(topo_content)
 
-        # create the 'cabling' list of actual ports that are to be cabled
-        # together in the topology.
+        else:
+            print(topo_content)
 
-        cabled_ports = set()
-        fake_br_id = 0
 
-        for cable_id, endpoints in topo_svc.cabling.cables.items():
-            end_a, end_b = sorted(endpoints, key=lambda e: (e.device, e))
-            cabled_ports.update((end_a, end_b))
+def render_topology_content(
+    template: jinja2.Template, design_obj: Design, dummy_br_name: str
+) -> str:
 
-            if end_b.cable_port_id is NoValidateCabling:
-                side_b = f"{dummy_br_name}:{fake_br_id}"
-                fake_br_id += 1
-            else:
-                side_b = f"{end_b.device.name}:{end_b.short_name.lower()}"
+    # TODO: should not use hardcoded 'topology', but for demo ok.
+    topo_svc: TopologyServiceLike = design_obj.services["topology"]
 
-            cabling.append((f"{end_a.device.name}:{end_a.short_name.lower()}", side_b))
+    # create the 'cabling' list of actual ports that are to be cabled
+    # together in the topology.
 
-        for dev_obj in design_obj.devices.values():
-            if dev_obj.is_pseudo:
+    cabled_ports = set()
+    fake_br_id = 0
+    cabling = []
+    used_uncabled = []
+    unused_ports = []
+
+    for cable_id, endpoints in topo_svc.cabling.cables.items():
+        end_a, end_b = sorted(endpoints, key=lambda e: (e.device, e))
+        cabled_ports.update((end_a, end_b))
+
+        if end_b.cable_port_id is NoValidateCabling:
+            side_b = f"{dummy_br_name}:{fake_br_id}"
+            fake_br_id += 1
+        else:
+            side_b = f"{end_b.device.name}:{end_b.short_name.lower()}"
+
+        cabling.append((f"{end_a.device.name}:{end_a.short_name.lower()}", side_b))
+
+    for dev_obj in design_obj.devices.values():
+        if dev_obj.is_pseudo:
+            continue
+
+        for ifobj in dev_obj.interfaces.values():
+            if ifobj in cabled_ports:
                 continue
 
-            for ifobj in dev_obj.interfaces.values():
-                if ifobj in cabled_ports:
-                    continue
-
-                if ifobj.used and (
-                    ifobj.profile.is_mgmt_only or ifobj.profile.is_virtual
-                ):
-                    continue
-
-                add_to = used_uncabled if ifobj.used else unused_ports
-
-                add_item = (
-                    f"{ifobj.device.name}:{ifobj.short_name.lower()}",
-                    fake_br_id,
-                )
-
-                add_to.append(add_item)
-                fake_br_id += 1
-
-        devices = [dev for dev in design_obj.devices.values() if not dev.is_pseudo]
-
-        file_content = template.render(
-            design=design_obj,
-            devices=devices,
-            cabled_ports=cabling,
-            uncabled_ports=used_uncabled,
-            unused_ports=unused_ports,
-        )
-        print(file_content)
-
-
-# -----------------------------------------------------------------------------
-#
-# netcad clabs etc-hosts
-#
-# -----------------------------------------------------------------------------
-
-
-@clig_clabs.command("etc-hosts")
-@opt_designs()
-@click.option("--prefix", "clab_prefix", help="containerlab prefix", default="clab")
-def clig_clabs_etchosts(designs: Tuple[str], clab_prefix):
-    """
-    Create an etc-hosts file with node.name only entries.
-
-    The ContainerLabs system does not yet provide a means to create containers
-    without prefix values.  For example, a node called "foo" in a topology will
-    be created as container "clab-$topologoy.name-$node.name"
-
-    This command generates a file that uses only the $node.name value so that a
-    User can ssh/connect to the container device using the simple node name
-    value.
-    """
-
-    device_objs = get_devices_from_designs(designs=designs)
-
-    map_clab_known_hosts = {
-        f"{clab_prefix}-{dev_obj.design.name}-{dev_obj.name}": dev_obj.name
-        for dev_obj in device_objs
-    }
-
-    split_wspaces = re.compile(r"\s+")
-
-    std_etc_hosts = list()
-
-    with Path("/etc/hosts") as etc_in:
-        for line in etc_in.read_text().splitlines():
-            if not line or line.startswith("#"):
+            if ifobj.used and (ifobj.profile.is_mgmt_only or ifobj.profile.is_virtual):
                 continue
 
-            ipaddr, hostname = split_wspaces.split(line, maxsplit=1)
-            if not (simple_host := map_clab_known_hosts.get(hostname)):
-                continue
+            add_to = used_uncabled if ifobj.used else unused_ports
 
-            std_etc_hosts.append(f"{ipaddr}\t{simple_host}")
+            add_item = (
+                f"{ifobj.device.name}:{ifobj.short_name.lower()}",
+                fake_br_id,
+            )
 
-    print("\n".join(std_etc_hosts))
+            add_to.append(add_item)
+            fake_br_id += 1
 
+    devices = [dev for dev in design_obj.devices.values() if not dev.is_pseudo]
 
-# -----------------------------------------------------------------------------
-#
-# netcad clabs copy-configs
-#
-# -----------------------------------------------------------------------------
-
-
-@clig_clabs.command("cp-configs")
-@opt_designs()
-@click.option(
-    "--path",
-    "clab_dirpath",
-    required=True,
-    help="path to clab directory",
-    type=click.Path(
-        dir_okay=True, file_okay=False, exists=True, resolve_path=True, path_type=Path
-    ),
-)
-def clig_clabs_copyconfigs(designs: Tuple[str], clab_dirpath: Path):
-    """
-    Generate the shell copy commands to copy the netcad generated config files
-    into container flash area.  The default destination file name will be
-    "netcad.cfg".  For now, this command is supports cEOS exclusively.
-
-    The User is required to perform the copy command since sudo/root is
-    required, for example:
-
-        netcad clab cp-configs --path demo-clab1 | sudo bash -
-
-    \f
-    Parameters
-    ----------
-    designs:
-        List of designs to process
-
-    clab_dirpath: Path
-        The root directory where the containerlab topology file is located.
-    """
-    device_objs = get_devices_from_designs(designs=designs)
-    configs_dir = Path("configs")
-
-    for dev_obj in device_objs:
-        cfg_file = dev_obj.name + ".cfg"
-        src_file = configs_dir / cfg_file
-        dst_dir = (
-            clab_dirpath / ("clab-" + dev_obj.design.name) / dev_obj.name / "flash"
-        )
-        dst_file = dst_dir / "netcad.cfg"
-        print(f"cp {src_file.absolute()} {dst_file.absolute()}")
+    return template.render(
+        design=design_obj,
+        devices=devices,
+        cabled_ports=cabling,
+        uncabled_ports=used_uncabled,
+        unused_ports=unused_ports,
+    )

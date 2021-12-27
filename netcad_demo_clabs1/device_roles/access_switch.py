@@ -42,6 +42,8 @@ class AccessSwitch(AnyContainerEosDevice):
     core-switch. See the `build_uplink_to_core` for details.
     """
 
+    UPLINK_PORTS = ["Ethernet7", "Ethernet8"]
+
     sort_key = (1, 0)
     device_base_name = "acc"
     template = Path("access_switch.jinja2")
@@ -80,23 +82,24 @@ class AccessSwitch(AnyContainerEosDevice):
         # dev-id values.
 
         base_cable_id = f"uplink_{self.name}_{core.name}"
+        up1_intfname, up2_intfname = self.UPLINK_PORTS
 
-        with if_defs["Ethernet7"] as eth7, if_defs["Ethernet8"] as eth8:
+        with if_defs[up1_intfname] as up1, if_defs[up2_intfname] as up2:
 
             # cable the access-swtich eth7 to the first core interface
 
-            eth7.profile = UplinkTrunk()
-            eth7.cable_id = base_cable_id + "_1"
+            up1.profile = UplinkTrunk()
+            up1.cable_id = base_cable_id + "_1"
 
             with core_if_defs[f"Ethernet{core_intf_baseport_id}"] as core_intf:
                 core_intf.profile = PeeringTrunk()
-                core_intf.cable_id = eth7.cable_id
+                core_intf.cable_id = up1.cable_id
 
             # cable the access-swtich eth8 to the second core interface
 
-            eth8.profile = UplinkTrunk()
-            eth8.cable_id = base_cable_id + "_2"
+            up2.profile = UplinkTrunk()
+            up2.cable_id = base_cable_id + "_2"
 
             with core_if_defs[f"Ethernet{core_intf_baseport_id + 1}"] as uplink:
                 uplink.profile = PeeringTrunk()
-                uplink.cable_id = eth8.cable_id
+                uplink.cable_id = up2.cable_id

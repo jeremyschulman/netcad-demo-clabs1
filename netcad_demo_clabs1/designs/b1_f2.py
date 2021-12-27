@@ -70,5 +70,5 @@ def create_design(design: Design) -> Design:
         The updated design instance.
     """
 
-    design = create_std_design(design)
+    create_std_design(design)
     return design

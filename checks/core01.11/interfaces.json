@@ -121,7 +121,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "WIFI-Employee",
+            "desc": "WIFI_Employee",
             "speed": null
          }
       },
@@ -136,7 +136,7 @@
          "expected_results": {
             "used": true,
             "oper_up": true,
-            "desc": "WIFI-Visitor",
+            "desc": "WIFI_Visitor",
             "speed": null
          }
       }

@@ -35,7 +35,7 @@ from netcad.design_services import Design
 # Private Imports
 # -----------------------------------------------------------------------------
 
-from .std_design import create_std_design   # , set_vlan_interfaces
+from .std_design import create_std_design, set_vlan_interfaces
 from ..profiles.access import DeskUser
 
 

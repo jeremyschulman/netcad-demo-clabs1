@@ -7,12 +7,12 @@
       "expected_results": {
          "vlans": [
             {
-               "name": "WIFI-Employee",
+               "name": "WIFI_Employee",
                "vlan_id": 300,
                "description": "For SSID Employee Wifi"
             },
             {
-               "name": "WIFI-Visitor",
+               "name": "WIFI_Visitor",
                "vlan_id": 301,
                "description": "For SSID Visitor Wifi"
             },
@@ -32,7 +32,7 @@
          },
          "expected_results": {
             "vlan": {
-               "name": "WIFI-Employee",
+               "name": "WIFI_Employee",
                "vlan_id": 300,
                "description": "For SSID Employee Wifi"
             },
@@ -50,7 +50,7 @@
          },
          "expected_results": {
             "vlan": {
-               "name": "WIFI-Visitor",
+               "name": "WIFI_Visitor",
                "vlan_id": 301,
                "description": "For SSID Visitor Wifi"
             },
