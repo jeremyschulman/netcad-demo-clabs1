@@ -29,6 +29,15 @@
          "expected_results": {
             "if_ipaddr": "10.200.1.1/24"
          }
+      },
+      {
+         "check_type": null,
+         "check_params": {
+            "if_name": "Vlan200"
+         },
+         "expected_results": {
+            "if_ipaddr": "10.101.1.1/24"
+         }
       }
    ]
 }

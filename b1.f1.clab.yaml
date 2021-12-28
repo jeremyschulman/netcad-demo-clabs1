@@ -31,13 +31,16 @@ topology:
   links:
 
     # used cabled data ports
-    - endpoints: ["acc01.11:et1", "br-dummy:0"]
     - endpoints: ["core01.11:et1", "acc01.11:et7"]
     - endpoints: ["core01.11:et2", "acc01.11:et8"]
     - endpoints: ["core01.11:et3", "acc02.11:et7"]
     - endpoints: ["core01.11:et4", "acc02.11:et8"]
+    - endpoints: ["acc01.11:et1", "br-dummy:0"]
 
     # used uncabled data ports
+    - endpoints: ["acc02.11:et1", "br-dummy:10"]
+    - endpoints: ["acc02.11:et2", "br-dummy:11"]
+    - endpoints: ["acc02.11:et3", "br-dummy:12"]
 
     # unused data ports
     - endpoints: ["core01.11:et5", "br-dummy:1"]
@@ -49,10 +52,6 @@ topology:
     - endpoints: ["acc01.11:et4", "br-dummy:7"]
     - endpoints: ["acc01.11:et5", "br-dummy:8"]
     - endpoints: ["acc01.11:et6", "br-dummy:9"]
-    - endpoints: ["acc02.11:et1", "br-dummy:10"]
-    - endpoints: ["acc02.11:et2", "br-dummy:11"]
-    - endpoints: ["acc02.11:et3", "br-dummy:12"]
     - endpoints: ["acc02.11:et4", "br-dummy:13"]
     - endpoints: ["acc02.11:et5", "br-dummy:14"]
     - endpoints: ["acc02.11:et6", "br-dummy:15"]
-

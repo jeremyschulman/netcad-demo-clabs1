@@ -108,6 +108,16 @@
          "profile_flags": {
             "is_virtual": true
          }
+      },
+      "Vlan200": {
+         "name": "Vlan200",
+         "enabled": true,
+         "used": true,
+         "port_type": null,
+         "desc": "Employee_Desk",
+         "profile_flags": {
+            "is_virtual": true
+         }
       }
    }
 }

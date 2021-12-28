@@ -109,7 +109,28 @@ def clig_clabs_topology(
 def render_topology_content(
     template: jinja2.Template, design_obj: Design, dummy_br_name: str
 ) -> str:
+    """
+    Generate the topology content for a given design.
 
+    Parameters
+    ----------
+    template: Template
+        The jinja2 template instance that will be used for rendeing purposes.
+
+    design_obj: Design
+        The design instance that is used to formulate the variables that
+        are passed to the Template for rendering.
+
+    dummy_br_name: str
+        The User define "dummy bridge" name that is used to define interfaces in
+        the containerlab topology so that they exist as virtual-ethernet
+        interfaces in Linux.
+
+    Returns
+    -------
+    str
+        The topology content that needs to be saved to a file.
+    """
     # TODO: should not use hardcoded 'topology', but for demo ok.
     topo_svc: TopologyServiceLike = design_obj.services["topology"]
 

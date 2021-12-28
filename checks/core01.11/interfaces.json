@@ -113,6 +113,21 @@
       {
          "check_type": null,
          "check_params": {
+            "interface": "Vlan200",
+            "interface_flags": {
+               "is_virtual": true
+            }
+         },
+         "expected_results": {
+            "used": true,
+            "oper_up": true,
+            "desc": "Employee_Desk",
+            "speed": null
+         }
+      },
+      {
+         "check_type": null,
+         "check_params": {
             "interface": "Vlan300",
             "interface_flags": {
                "is_virtual": true

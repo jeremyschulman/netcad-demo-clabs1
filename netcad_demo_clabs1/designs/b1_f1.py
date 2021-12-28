@@ -73,8 +73,8 @@ def create_design(design: Design) -> Design:
 
     create_std_design(design)
 
-    # _add_desk_ports(design)
-    # set_vlan_interfaces(design)
+    _add_desk_ports(design)
+    set_vlan_interfaces(design)
 
     return design
 
