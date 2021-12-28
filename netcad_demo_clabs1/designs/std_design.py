@@ -56,6 +56,7 @@ from netcad.vlan.vlan_design_service import (
 )
 
 from netcad.vlan import VlanProfileLike
+from netcad.ipam import IPAM
 
 # -----------------------------------------------------------------------------
 # Private Imports
@@ -63,7 +64,7 @@ from netcad.vlan import VlanProfileLike
 
 from ..profiles.clab_ma0 import Management0
 from ..device_roles import CoreSwitch, AccessSwitch, AnyDevice, FloorAccessPoint
-from ..ipam import create_site_ipam, IPAM
+from ..ipam import create_site_ipam
 
 # -----------------------------------------------------------------------------
 # Exports

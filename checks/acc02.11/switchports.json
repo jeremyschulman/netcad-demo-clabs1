@@ -6,6 +6,48 @@
       {
          "check_type": "switchport",
          "check_params": {
+            "if_name": "Ethernet1"
+         },
+         "expected_results": {
+            "switchport_mode": "access",
+            "vlan": {
+               "name": "Employee_Desk",
+               "vlan_id": 200,
+               "description": "For Employee Desk ports"
+            }
+         }
+      },
+      {
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet2"
+         },
+         "expected_results": {
+            "switchport_mode": "access",
+            "vlan": {
+               "name": "Employee_Desk",
+               "vlan_id": 200,
+               "description": "For Employee Desk ports"
+            }
+         }
+      },
+      {
+         "check_type": "switchport",
+         "check_params": {
+            "if_name": "Ethernet3"
+         },
+         "expected_results": {
+            "switchport_mode": "access",
+            "vlan": {
+               "name": "Employee_Desk",
+               "vlan_id": 200,
+               "description": "For Employee Desk ports"
+            }
+         }
+      },
+      {
+         "check_type": "switchport",
+         "check_params": {
             "if_name": "Ethernet7"
          },
          "expected_results": {
@@ -15,7 +57,13 @@
                "vlan_id": 411,
                "description": "using different native vlan in demo"
             },
-            "trunk_allowed_vlans": []
+            "trunk_allowed_vlans": [
+               {
+                  "name": "Employee_Desk",
+                  "vlan_id": 200,
+                  "description": "For Employee Desk ports"
+               }
+            ]
          }
       },
       {
@@ -30,7 +78,13 @@
                "vlan_id": 411,
                "description": "using different native vlan in demo"
             },
-            "trunk_allowed_vlans": []
+            "trunk_allowed_vlans": [
+               {
+                  "name": "Employee_Desk",
+                  "vlan_id": 200,
+                  "description": "For Employee Desk ports"
+               }
+            ]
          }
       }
    ]

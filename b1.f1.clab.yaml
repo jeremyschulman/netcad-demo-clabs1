@@ -1,0 +1,57 @@
+name: b1.f1
+
+# disable container name prefixing so that the etc-hosts file mirrors the node name
+prefix: ""
+
+topology:
+  defaults:
+      env:
+        INTFTYPE: et
+
+  nodes:
+    br-dummy:
+      kind: bridge
+
+    core01.11:
+      kind: ceos
+      image: ceos:latest
+      startup-config: core01.11.cfg
+      mgmt_ipv4: 172.20.20.2
+    acc01.11:
+      kind: ceos
+      image: ceos:latest
+      startup-config: acc01.11.cfg
+      mgmt_ipv4: 172.20.20.3
+    acc02.11:
+      kind: ceos
+      image: ceos:latest
+      startup-config: acc02.11.cfg
+      mgmt_ipv4: 172.20.20.4
+
+  links:
+
+    # used cabled data ports
+    - endpoints: ["core01.11:et1", "acc01.11:et7"]
+    - endpoints: ["core01.11:et2", "acc01.11:et8"]
+    - endpoints: ["core01.11:et3", "acc02.11:et7"]
+    - endpoints: ["core01.11:et4", "acc02.11:et8"]
+    - endpoints: ["acc01.11:et1", "br-dummy:0"]
+
+    # used uncabled data ports
+    - endpoints: ["acc02.11:et1", "br-dummy:10"]
+    - endpoints: ["acc02.11:et2", "br-dummy:11"]
+    - endpoints: ["acc02.11:et3", "br-dummy:12"]
+
+    # unused data ports
+    - endpoints: ["core01.11:et5", "br-dummy:1"]
+    - endpoints: ["core01.11:et6", "br-dummy:2"]
+    - endpoints: ["core01.11:et7", "br-dummy:3"]
+    - endpoints: ["core01.11:et8", "br-dummy:4"]
+    - endpoints: ["acc01.11:et2", "br-dummy:5"]
+    - endpoints: ["acc01.11:et3", "br-dummy:6"]
+    - endpoints: ["acc01.11:et4", "br-dummy:7"]
+    - endpoints: ["acc01.11:et5", "br-dummy:8"]
+    - endpoints: ["acc01.11:et6", "br-dummy:9"]
+    - endpoints: ["acc02.11:et4", "br-dummy:13"]
+    - endpoints: ["acc02.11:et5", "br-dummy:14"]
+    - endpoints: ["acc02.11:et6", "br-dummy:15"]
