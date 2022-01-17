@@ -35,7 +35,7 @@ from pathlib import Path
 # Public Imports
 # -----------------------------------------------------------------------------
 
-from netcad.device.l2_interfaces import InterfaceL2Access
+from netcad.vlans import InterfaceL2Access
 
 # -----------------------------------------------------------------------------
 # Private Imports

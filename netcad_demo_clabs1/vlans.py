@@ -20,7 +20,7 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 
-from netcad.vlan import VlanProfile
+from netcad.vlans import VlanProfile
 
 vlan_native = VlanProfile(
     vlan_id=411, name="native_vlan", description="using different native vlan in demo"

@@ -28,7 +28,7 @@
 # Public Imports
 # -----------------------------------------------------------------------------
 
-from netcad.design_services import Design
+from netcad.design import Design
 
 # -----------------------------------------------------------------------------
 # Private Imports

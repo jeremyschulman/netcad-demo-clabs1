@@ -34,10 +34,10 @@ from pathlib import Path
 import click
 import jinja2
 
-from netcad.design_services import Design
+from netcad.design import Design
 from netcad.cli.netcad.cli_netcad_main import cli
 from netcad.cli.common_opts import opt_designs
-from netcad.design_services import load_design
+from netcad.design import load_design
 from netcad.topology import TopologyServiceLike, NoValidateCabling
 
 # -----------------------------------------------------------------------------
@@ -72,6 +72,7 @@ def clig_clabs():
 @click.option(
     "--save-dir",
     "save_dir",
+    default=".",
     type=click.Path(
         path_type=Path, resolve_path=True, exists=True, dir_okay=True, file_okay=False
     ),
@@ -96,14 +97,10 @@ def clig_clabs_topology(
         design_obj = load_design(design_name)
         topo_content = render_topology_content(template, design_obj, dummy_bridge)
 
-        if save_dir:
-            topo_file = save_dir / (design_obj.name + ".clab.yaml")
-            with topo_file.open("w+") as ofile:
-                print(f"SAVE: {ofile.name}")
-                ofile.write(topo_content)
-
-        else:
-            print(topo_content)
+        topo_file = save_dir / (design_obj.name + ".clab.yaml")
+        with topo_file.open("w+") as ofile:
+            print(f"SAVE: {ofile.name}")
+            ofile.write(topo_content)
 
 
 def render_topology_content(

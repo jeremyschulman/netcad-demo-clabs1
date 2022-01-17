@@ -63,7 +63,4 @@ def create_j2env(template_dir) -> jinja2.Environment:
         undefined=jinja2.StrictUndefined,
     )
 
-    # env.filters["clab_intfname"] = j2filter_clab_ifname
-    # env.tests["is_clab_dataport"] = j2test_is_dataport
-
     return env
