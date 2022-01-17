@@ -29,7 +29,7 @@
 # Public Imports
 # -----------------------------------------------------------------------------
 
-from netcad.design_services import Design
+from netcad.design import Design
 from netcad.ipam import IPAM
 
 # -----------------------------------------------------------------------------

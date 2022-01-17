@@ -35,9 +35,8 @@ from pathlib import Path
 # Public Imports
 # -----------------------------------------------------------------------------
 
-from netcad.device.l2_interfaces import InterfaceL2Trunk
+from netcad.vlans import InterfaceL2Trunk, VlansFromPeer, VlansAll
 from netcad.device import PeerInterfaceId
-from netcad.vlan import VlansFromPeer, VlansAll
 
 # -----------------------------------------------------------------------------
 # Private Imports

@@ -25,7 +25,7 @@
 # -----------------------------------------------------------------------------
 
 from netcad.device import PseudoDevice, DeviceInterface
-from netcad.device.l2_interfaces import InterfaceL2Trunk
+from netcad.vlans import InterfaceL2Trunk
 from netcad.topology import NoValidateCabling
 
 # -----------------------------------------------------------------------------

@@ -29,7 +29,7 @@
 # -----------------------------------------------------------------------------
 
 from netcad.device import DeviceCatalog
-from netcad.design_services import Design
+from netcad.design import Design
 
 # -----------------------------------------------------------------------------
 # Private Imports

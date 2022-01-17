@@ -47,15 +47,16 @@ from ipaddress import IPv4Interface, IPv4Network
 # Public Imports
 # -----------------------------------------------------------------------------
 
-from netcad.design_services import Design
+from netcad.design import Design
 from netcad.topology import TopologyDesignService
-from netcad.device.l3_interfaces import InterfaceVlan
-from netcad.vlan.vlan_design_service import (
+
+from netcad.vlans import (
+    InterfaceVlan,
     VlansDesignService,
     DeviceVlanDesignServiceLike,
+    VlanProfileLike,
 )
 
-from netcad.vlan import VlanProfileLike
 from netcad.ipam import IPAM
 
 # -----------------------------------------------------------------------------
