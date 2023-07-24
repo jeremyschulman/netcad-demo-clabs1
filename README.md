@@ -20,7 +20,7 @@ Each design has, by default, the following:
 
 * one "core" device
 * two "access" devices, each with 2 uplinks to the core
-* one "access-point", that is conncected to an access-device
+* one "access-point", that is connected to an access-device
 
 The "access-point" does not exist in the containerlab demonstration.  It is
 designed as a psuedo-device for the purpose of the design elements.
